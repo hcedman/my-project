@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap");
+
+/* index.php */
+body {
+  background-color: #e7e6e6;
+  font-family: "Sarabun", sans-serif;
+}
+/* ...header */
+
+/* ...navbar */
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+  background-color: rgb(178, 186, 189);
+}
+#navIndex {
+  font-weight: bold;
+  padding-top: 0%;
+  padding-bottom: 0%;
+}
+/* ...image slide */
+#slide {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+#menuSortby #nav-tab #nav-tabContent {
+  background-color: white;
+}
+.line-through {
+  text-decoration:line-through;
+  text-decoration-thickness: 0.1em;
+
+}
+.underline {
+  text-decoration:underline;
+  text-decoration-thickness: 0.1em;
+
+}
+.nav_product_style{
+  color:#021b39;
+  font-size:medium;
+  font-weight: bold;
+}
+.nav_product_active{
+  font-weight:bolder;
+  font-size:medium;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 4px;
+  text-decoration-color:tomato;
+  /* border-bottom: 4px solid red; */
+}
