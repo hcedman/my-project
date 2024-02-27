@@ -19,33 +19,32 @@ session_start();
             margin-top: 8px;
             padding-top: 2rem;
         }
+
         .row {
             justify-content: first baseline;
             align-items: center;
         }
-        /* #box_product {
-            margin: 1rem;
-            margin-top: 0%;
-        } */
-        /* #card_product {
-            margin: 1rem;
+
+        .page-item.active .page-link {
+            background-color: #021b39;
+            border: #021b39;
+            font-weight: bold;
         }
-        .card {
-            width: 20rem;
-        } */
+
+        .pagination>li>a {
+            color: #021b39;
+            font-weight: bold;
+        }
+
         #btn_buy {
             font-weight: bolder;
         }
+
         .card-title {
             color: firebrick;
             font-weight: bold;
+        }
 
-        }
-        .card-text {
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-        }
         .card-text {
             font-weight: bold;
             white-space: nowrap;
@@ -53,13 +52,15 @@ session_start();
             text-decoration: none;
             color: black;
         }
+
         .card:hover img {
             transform: scale(1.1);
         }
+
         #box_page {
             padding-bottom: 2rem;
-
         }
+
         #product_link {
             text-decoration: none;
             color: black;
@@ -135,7 +136,7 @@ session_start();
     $navig = ceil($total / $perpage);
     ?>
     <form action="" method="get">
-        <div class="container-fluid container-lg" id="box_result" style="padding-left: 2rem; padding-right:2rem; min-height: 80vh ;">
+        <div class="container-fluid container-lg" id="box_result" style="padding-left: 2rem; padding-right:2rem;">
             <?php
             if (!empty($check)) {
                 if (!empty($check2)) {
@@ -175,68 +176,86 @@ session_start();
             <?php
             }
             ?>
-            <div class="row">
-                <?php
-                if ($result_search->num_rows > 0) {
-                    while ($data = $result_search->fetch_assoc()) {
-                ?>
-                        <div class="col col-xl-3 col-lg-4 col-md-6 col-sm-6" id="box_product">
-                            <div class="card" id="card_product" style="padding-top: 1rem; margin-bottom:1rem;">
-                                <?php
-                                $picture_id = $data['product_id'];
-                                $sql_picture = "select * from picture where product_id= $picture_id";
-                                $result_picture = $conn->query($sql_picture);
-                                $data_picture = $result_picture->fetch_assoc();
-                                ?>
-                                <img style="height:12rem; width:12rem; display:block; margin-left:auto; margin-right:auto; " src="upload/<?php echo $data_picture['picture_name']; ?>" class="card-img" alt="" srcset="">
-                                <div class="card-body">
-                                    <h6 class="card-title">&#3647;<?php echo number_format($data['product_price']); ?></h6>
-                                    <p class="card-text"><a href="product.php?id=<?php echo $data['product_id']; ?>" target="_blank" id="product_link" style="font-weight:600;"><?php echo $data['product_name']; ?></a></p>
+            <div style="min-height: 80vh ;">
+                <div class="row">
+                    <?php
+                    if ($result_search->num_rows > 0) {
+                        while ($data = $result_search->fetch_assoc()) {
+                    ?>
+                            <div class="col col-xl-3 col-lg-4 col-md-6 col-sm-6" id="box_product">
+                                <div class="card" id="card_product" style="padding-top: 1rem; margin-bottom:1rem;">
+                                    <?php
+                                    $picture_id = $data['product_id'];
+                                    $sql_picture = "select * from picture where product_id= $picture_id";
+                                    $result_picture = $conn->query($sql_picture);
+                                    $data_picture = $result_picture->fetch_assoc();
+                                    ?>
+                                    <img style="height:12rem; width:12rem; display:block; margin-left:auto; margin-right:auto; " src="upload/<?php echo $data_picture['picture_name']; ?>" class="card-img" alt="" srcset="">
+                                    <div class="card-body">
+                                        <h6 class="card-title">&#3647;<?php echo number_format($data['product_price']); ?></h6>
+                                        <p class="card-text"><a href="product.php?id=<?php echo $data['product_id']; ?>" target="_blank" id="product_link" style="font-weight:bold; font-size:small;"><?php echo $data['product_name']; ?></a></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                <?php }
-                }
-                ?>
-            </div><br>
-            <nav aria-label="" id="box_page">
-                <ul class="pagination" style="justify-content:center ;">
-                    <?php
-                    $previous = $page - 1;
-                    if ($previous > 0) {
-                    ?>
-                        <li class="page-item"><a href="search.php?page=<?php echo $previous ?>" class="page-link" id="previous">Previous</a></li>
-                    <?php
-                    } else {
-                        $previous = 1;
-                    ?>
-                        <li class="page-item disabled" aria-disabled="true"><a href="" class="page-link" id="previous">Previous</a></li>
-                        <?php
+                    <?php }
                     }
-                    for ($i = 1; $i <= $navig; $i++) {
-                        if ($i == $page) {
+                    ?>
+                </div><br>
+            </div>
+            <div class="container-fluid container-lg bg-white" style="padding:1rem 0rem 2rem 0rem ;">
+                <nav aria-label="">
+                    <ul class="pagination">
+                        <?php
+                        $previous = $page - 1;
+                        if ($previous > 0) {
                         ?>
-                            <li class="page-item active" aria-current="page"><span class="page-link"><?php echo $i; ?></span></li>
+                            <li class="page-item">
+                                <a class="page-link" href="manage_member.php?page=<?php echo $previous; ?>">Previous</a>
+                            </li>
                         <?php
                         } else {
+                            $previous = 1;
                         ?>
-                            <li class="page-item"><a href="search.php?page=<?php echo $i; ?>" class="page-link"><?php echo $i; ?></a></li>
+                            <li class="page-item disabled" aria-disabled="true">
+                                <a class="page-link" href="manage_member.php?page=<?php $previous; ?>">Previous</a>
+                            </li>
                         <?php
                         }
-                    }
-                    if ($page < $navig) {
                         ?>
-                        <li class="page-item"><a href="search.php?page=<?php echo $next = $page + 1;  ?>" class="page-link" id="next">Next</a></li>
-                    <?php
-                    } else {
-                        $next = $navig;
-                    ?>
-                        <li class="page-item disabled" aria-disabled="true"><a href="" class="page-link" id="next">Next</a></li>
-                    <?php
-                    }
-                    ?>
-                </ul>
-            </nav>
+                        <?php
+                        $sql_total = $conn->query("select * from member");
+                        $data_count = $sql_total->num_rows;
+                        $row = ceil($data_count / $perpage);
+                        for ($i = 1; $i <= $row; $i++) {
+                            if ($page == $i) {
+                        ?>
+                                <li class="page-item active" aria-current="page"><span class="page-link"><?php echo $i; ?></span></li>
+                            <?php
+                            } else {
+                            ?>
+                                <li class="page-item"><a class="page-link" href="manage_member.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                            <?php
+                            }
+                            ?>
+                        <?php }
+                        if ($page < $row) {
+                        ?>
+                            <li class="page-item">
+                                <a class="page-link" href="manage_member.php?page=<?php echo $next = $page + 1; ?>">Next</a>
+                            </li>
+                        <?php
+                        } else {
+                            $next = $row;
+                        ?>
+                            <li class="page-item disabled" aria-disabled="true">
+                                <a class="page-link" href="">Next</a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                </nav>
+            </div>
             <span id="page_hide" style="display:none ;"><?php echo $page; ?></span>
         </div>
     </form>

@@ -42,7 +42,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     $count_noti = $_SESSION['count_rec'];
     ?>
     <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding: 3rem; min-height:60vh;">
-        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem;">คำแนะนำบริการ</h3>
+        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">คำแนะนำบริการ</h3>
         <table class="table table-hover">
             <tbody>
                 <?php

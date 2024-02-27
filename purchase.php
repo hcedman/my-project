@@ -108,7 +108,7 @@ include 'connect.php';
                     <div class="col-2"><span style="font-weight:bold;">เลขที่ออเดอร์ &nbsp;<?php echo $result_order['order_id']; ?></span></div>
                     <div class="col-7"><span style="font-weight:bold;">&nbsp;<?php echo $result_product['product_name']; ?></span></div>
 
-                    <div class="col-2" style="text-align:right ; font-weight:bold;"><span>สถานะ&nbsp;:&nbsp;<?php echo $order_status; ?></span></div>
+                    <div class="col-3" style="text-align:right ; font-weight:bold;"><span>สถานะ&nbsp;:&nbsp;<?php echo $order_status; ?></span></div>
                 </div>
                 <div class="row" style="border-bottom:1px; border-color:black">
                     <div class="col-2" style="border-bottom: 2px solid lightgray;"><img class=" img-thumbnail" style="height:7rem; width:7rem; margin-bottom:1rem" src="upload/<?php echo $result_product['picture_name']; ?>" alt=""></div>

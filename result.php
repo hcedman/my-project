@@ -56,7 +56,7 @@ include 'connect.php';
                 </div>
                 <div style="text-align:center ;">
                     <button class="btn btn-danger"><a href="search.php" style="text-decoration:none ; font-weight:bold; color:white; font-weight:bold">ซื้อสินค้าต่อ</a></button>
-                    <button class="btn btn-danger"><a href="purchase_member.php" style="text-decoration:none ;color:white; font-weight:bold;">ประวัติการสั่งซื้อ</a></button><br><br>
+                    <button class="btn btn-danger"><a href="purchase.php" style="text-decoration:none ;color:white; font-weight:bold;">ประวัติการสั่งซื้อ</a></button><br><br>
                 </div>
             <?php
             }

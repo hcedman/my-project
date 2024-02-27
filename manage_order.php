@@ -30,11 +30,17 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
         }
 
         .btn,
-        th,
+        th{
+            color:gray;
+            font-size:medium;
+            font-weight:bold;
+  
+        }
         td {
             font-weight: bold;
             white-space: nowrap;
             overflow: auto;
+            vertical-align: middle;
         }
 
         .page-item.active .page-link {
@@ -47,6 +53,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             color: #021b39;
             font-weight: bold;
         }
+
     </style>
     <title>Benz Online</title>
 </head>
@@ -57,12 +64,12 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     include 'partition/menu_manage.php'; ?>
 
     <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding: 3rem; min-height: 70vh ;">
-        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem;">จัดการข้อมูลคำสั่งซื้อ</h3>
+        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">จัดการข้อมูลคำสั่งซื้อ</h3>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th style="text-align:center ;">
-                        <div>คำสั่งซื้อ</div>
+                        <div></div>
                     </th>
                     <th style="text-align:center ;">รหัสลูกค้า</th>
                     <th>ชื่อ-นามสกุล</th>
@@ -95,11 +102,11 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                 while ($data_order = $sql_order->fetch_assoc()) {
                 ?>
                     <tr>
-                        <td style="text-align:center;"><span class="badge" style="font-size:medium; background-color:#021b39"><?php echo $data_order['order_id']; ?></span></td>
+                        <td style="text-align:center;"><span class="badge" style="font-size:small; background-color:#021b39;"><?php echo $data_order['order_id']; ?></span></td>
                         <td style="text-align:center ;"><?php echo $data_order['member_id']; ?></td>
                         <td><?php echo $data_order['order_firstname'] . "&nbsp" . $data_order['order_lastname']; ?></td>
                         <td style="text-align:center;"><?php echo $data_order['order_date']; ?></td>
-                        <td style="text-align:right ;"><?php echo number_format($data_order['order_total']); ?></td>
+                        <td style="text-align:right ; color:darkred;"><?php echo number_format($data_order['order_total']); ?></td>
                         <td style="text-align:center;"><button class="btn btn-warning" id="xxx"><a href="order_detail.php?order_id=<?php echo $data_order['order_id']; ?>" style="text-decoration:none; color:white;" target="_blank"><i class="bi bi-pencil-square"></i>&nbsp;รายละเอียด</a></button></td>
                         <td>
                             <?php

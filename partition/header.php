@@ -73,6 +73,7 @@
     .dropdown-menu>li:hover>.submenu {
         display: block;
     }
+
 </style>
 <?php
 
@@ -112,10 +113,10 @@
                             <div class="dropdown" style="display:inline; padding:0%">
                                 <button class="btn dropdown-toggle shadow-none" id="menu_top" data-bs-toggle="dropdown" aria-expanded="false" style="color:white ;">
                                     <i class="bi bi-person-fill"></i>&nbsp;<?php echo $result_name['member_firstname']; ?></button>
-                                <ul class=" dropdown-menu" aria-labelledby="menu_top">
-                                    <li><a href="account.php" class=" dropdown-item">บัญชีของฉัน</a></li>
-                                    <li><a href="purchase.php" class=" dropdown-item">การซื้อของฉัน</a></li>
-                                    <?php if ($member_level == 2) { ?><li><a href="manage.php" class=" dropdown-item">จัดการร้านค้า</a></li> <?php } ?>
+                                <ul class=" dropdown-menu" aria-labelledby="menu_top" >
+                                    <li><a href="account.php" class=" dropdown-item" style="font-weight: normal;">บัญชีของฉัน</a></li>
+                                    <li><a href="purchase.php" class=" dropdown-item"  style="font-weight: normal;">การซื้อของฉัน</a></li>
+                                    <?php if ($member_level == 2) { ?><li><a href="manage.php" class=" dropdown-item"  style="font-weight: normal;">จัดการร้านค้า</a></li> <?php } ?>
                                     <li onclick="alertUpdate('success','ออกจากระบบเรียบร้อย','logout.php')" class=" dropdown-item">ออกจากระบบ</li>
                                 </ul>
                             </div>

@@ -32,6 +32,7 @@
 
 <div class="container-fluid container-lg" style="background-color:white; margin-top: 8px; ">
     <nav class="navbar-light" style="padding: 8px;">
+    <button class="btn btn-primary" style="margin-right: 5px; "><a href="manage.php" id="link3"><i class="bi bi-house-door-fill"></i>&nbsp; ข้อมูลร้านค้า</a></button>
         <div class="btn-group" role="group" style="margin-right: 5px; ">
             <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#021b39; color:white"><a href="manage_product.php" id="link1"><i class="bi bi-list-ol"></i>&nbsp; สินค้า</a></button>
             <ul class=" dropdown-menu">
@@ -49,11 +50,11 @@
 
 
         <button class="btn btn-primary" style="margin-right: 5px; "><a href="manage_order.php" id="link3"><i class="bi bi-card-list"></i>&nbsp; จัดการออเดอร์</a></button>
-        <button class="btn btn-primary" style="margin-right: 5px; "><a href="manage_rec.php" id="link3"><i class="bi bi-chat-square-quote"></i></i>&nbsp; คำแนะนำบริการ 
+        <button class="btn btn-primary" style="margin-right: 5px; "><a href="manage_rec.php" id="link3"><i class="bi bi-chat-square-quote"></i>&nbsp; คำแนะนำบริการ 
         <span class="badge rounded-pill bg-danger"><?php if($count >=1){ echo $count;} ?></span>
     
     </a></button>
-        <button onclick="develop()" class="btn btn-primary" style="margin-right: 5px; " name="btn_promotion" id="btn_promotion" >จัดการโปรโมชัน</button>
+        <button onclick="develop()" class="btn btn-primary" style="margin-right: 5px; " name="btn_promotion" id="btn_promotion" ><i class="bi bi-tags-fill"></i>&nbsp;จัดการโปรโมชัน</button>
     </nav>
 </div>
 

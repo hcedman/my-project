@@ -36,6 +36,12 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             color: #021b39;
             font-weight: bold;
         }
+        th{
+            color:gray;
+            font-size:medium;
+            font-weight:bold;
+  
+        }
     </style>
 
     <title>Benz Online</title>
@@ -47,7 +53,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     <?php include 'partition/menu_manage.php' ?>
 
     <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding: 3rem; ">
-        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem;">จัดการข้อมูลสินค้า</h3>
+        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">จัดการข้อมูลสินค้า</h3>
         <div style="margin: 3rem auto 2rem ">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -68,13 +74,13 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" style="text-align:center ;">รหัส</th>
+                        <th scope="col"></th>
                         <th scope="col-md-3" style="text-align:center ;"></th>
                         <th>ชื่อสินค้า</th>
                         <th>ประเภท</th>
                         <th>สถานะ</th>
                         <th style="text-align:center ;">จำนวน</th>
-                        <th style="text-align:right">ราคา</th>
+                        <th style="text-align:center">ราคา</th>
                         <th style="text-align:center ;"></th>
                     </tr>
                 </thead>
@@ -121,18 +127,18 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                         }
                     ?>
                         <tr>
-                            <td style="text-align:center ;"><?php echo $data['product_id']; ?></td>
-                            <td><img src="upload/<?php echo $data_picture['picture_name']; ?>" style="width:6rem; height:6rem;" class="rounded mx-auto d-block"></td>
+                            <td style="text-align:center ;"><span class="badge" style="background-color: #021b39; font-size:small; font-weight:bolder; margin-top:0.6rem; "><?php echo $data['product_id']; ?></span></td>
+                            <td><img src="upload/<?php echo $data_picture['picture_name']; ?>" style="width:5rem; height:5rem;" class="rounded mx-auto d-block"></td>
                             <td><a href="product.php?id=<?php echo $data['product_id'];  ?>" target="_blank" style="text-decoration:none; color:black; font-weight:bold; font-size:small;"><?php echo $data['product_name']; ?></a></td>
-                            <td><?php echo $data['product_type']; ?></td>
+                            <td style="font-weight: bold;"><?php echo $data['product_type']; ?></td>
                             <td><span class="badge bg-success" id="badge_status"><?php echo $status ?></span></td>
-                            <td style="text-align:center;"><?php echo $data['product_remain']; ?></td>
+                            <td style="text-align:center; font-weight:bold;"><?php echo number_format($data['product_remain']) ?></td>
                             <td style="text-align:right; font-weight:bold; color:darkred"><?php echo number_format($data['product_price'], 2); ?></td>
                             <td width="180px">
                                 <div class="btn btn-group" style="padding:0%;">
                                     <button class="btn btn-warning"><a href="edit_product.php?product_id=<?php echo $data['product_id']; ?>" style="text-decoration:none; color:white;"><i class="bi bi-pencil-square"></i></a></button>
-                                    <button class="btn btn-danger" id="btn_close" onclick="alertConfirm('ปิด','เมื่อปิดการขายสินค้านี้จะไม่ปรากฏในรายการค้นหาสินค้า','manage_product.php?page=<?php echo $page; ?>&update_id=<?php echo $data['product_id']; ?>&val=0')">ปิดขาย</button>
-                                    <button class="btn btn-success" id="btn_open" onclick="alertConfirm('เปิด','ต้องการเปิดการขายสินค้านี้หรือไม่','manage_product.php?page=<?php echo $page; ?>&update_id=<?php echo $data['product_id']; ?>&val=1')">เปิดขาย</button>
+                                    <button class="btn btn-danger" style="font-weight: bold;" id="btn_close" onclick="alertConfirm('ปิด','เมื่อปิดการขายสินค้านี้จะไม่ปรากฏในรายการค้นหาสินค้า','manage_product.php?page=<?php echo $page; ?>&update_id=<?php echo $data['product_id']; ?>&val=0')">ปิดขาย</button>
+                                    <button class="btn btn-success" style="font-weight: bold;" id="btn_open" onclick="alertConfirm('เปิด','ต้องการเปิดการขายสินค้านี้หรือไม่','manage_product.php?page=<?php echo $page; ?>&update_id=<?php echo $data['product_id']; ?>&val=1')">เปิดขาย</button>
                                 </div>
                             </td>
                         </tr>

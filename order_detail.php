@@ -134,7 +134,6 @@ include 'connect.php';
                     <div class="col-1" style="text-align:end ;   "><?php echo "&#3647;" . number_format($sum_item); ?></div>
                 </div>
             <?php
-
                 $number++;
                 $total += $sum_item;
                 $total_delivery += $data_item['product_delivery'];

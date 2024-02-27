@@ -16,7 +16,6 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="script.js"></script>
     <script>
-
     </script>
     <style>
         /* .card {
@@ -116,22 +115,20 @@ session_start();
             </button>
         </div>
     </div>
-    <div class="container-lg bg bg-white" style="padding-top:2px;">
+    <div class="container-lg bg bg-white" style="padding: 0.5rem 1rem 1rem 1rem; " >
         <div class="row">
-            <div class="col-lg-2" id="brand1"><a href="search.php?search=apple" target="_blank"><img id="brand_id1" src="img/brand/apple.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand2"><a href="search.php?search=microsoft" target="_blank"><img id="brand_id2" src="img/brand/microsoft.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand3"><a href="search.php?search=asus" target="_blank"><img id="brand_id3" src="img/brand/asus.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand4"><a href="search.php?search=acer" target="_blank"><img id="brand_id4" src="img/brand/acer.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand5"><a href="search.php?search=lenovo" target="_blank"><img id="brand_id5" src="img/brand/lenovo.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand6"><a href="search.php?search=msi" target="_blank"><img id="brand_id6" src="img/brand/msi.jpg" alt=""></a></div>
-        </div>
-        <div class="row">
-            <div class="col-lg-2" id="brand7"><a href="search.php?search=xiaomi" target="_blank"><img id="brand_id7" src="img/brand/xiaomi.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand8"><a href="search.php?search=dell" target="_blank"><img id="brand_id8" src="img/brand/dell.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand9"><a href="search.php?search=lg" target="_blank"><img id="brand_id9" src="img/brand/lg.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand10"><a href="search.php?search=hp" target="_blank"><img id="brand_id10" src="img/brand/hp.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand11"><a href="search.php?search=samsung" target="_blank"><img id="brand_id11" src="img/brand/samsung.jpg" alt=""></a></div>
-            <div class="col-lg-2" id="brand12"><a href="search.php?search=viewsonic" target="_blank"><img id="brand_id12" src="img/brand/viewsonic.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand1"><a href="search.php?search=apple" target="_blank"><img id="brand_id1" src="img/brand/apple.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand2"><a href="search.php?search=microsoft" target="_blank"><img id="brand_id2" src="img/brand/microsoft.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand3"><a href="search.php?search=asus" target="_blank"><img id="brand_id3" src="img/brand/asus.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand4"><a href="search.php?search=acer" target="_blank"><img id="brand_id4" src="img/brand/acer.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand5"><a href="search.php?search=lenovo" target="_blank"><img id="brand_id5" src="img/brand/lenovo.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand6"><a href="search.php?search=msi" target="_blank"><img id="brand_id6" src="img/brand/msi.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand7"><a href="search.php?search=xiaomi" target="_blank"><img id="brand_id7" src="img/brand/xiaomi.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand8"><a href="search.php?search=dell" target="_blank"><img id="brand_id8" src="img/brand/dell.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand9"><a href="search.php?search=lg" target="_blank"><img id="brand_id9" src="img/brand/lg.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand10"><a href="search.php?search=hp" target="_blank"><img id="brand_id10" src="img/brand/hp.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand11"><a href="search.php?search=samsung" target="_blank"><img id="brand_id11" src="img/brand/samsung.jpg" alt=""></a></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand12"><a href="search.php?search=viewsonic" target="_blank"><img id="brand_id12" src="img/brand/viewsonic.jpg" alt=""></a></div>
         </div>
     </div>
     <div class="container-lg bg-white">
@@ -165,8 +162,6 @@ session_start();
             ?>
         </div><br><br>
     </div>
-
-
     <?php include 'partition/footer.php'; ?>
 </body>
 

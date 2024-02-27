@@ -27,6 +27,30 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             text-decoration: none;
             font-weight: bold;
         }
+
+        th {
+            text-align: center;
+            color: #021b39;
+        }
+
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .bdr {
+            border-radius: 10px;
+            overflow: hidden;
+            margin: auto;
+            /* background-color:aliceblue; */
+        }
+
+        .btn_navy {
+            background-color: #021b39;
+        }
+        h5{
+            margin-left: 1rem; ;
+        }
     </style>
 
     <title>Benz Online</title>
@@ -38,7 +62,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     <?php include 'partition/menu_manage.php' ?>
     <?php
     include 'connect.php';
-    $sql_product = $conn->query("select * from product where product_remain < 100 order by product_id ASC LIMIT 5");
+    $sql_product = $conn->query("select * from product where product_remain < 50 order by product_id ASC LIMIT 5");
     $sql_member = $conn->query("select * from member");
     $data_member = $sql_member->fetch_assoc();
     $count_member = mysqli_num_rows($sql_member);
@@ -56,59 +80,67 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     ?>
     <div class=" container-fluid container-lg bg-white" style="min-height:70vh; margin-top:8px; padding: 3rem;">
         <div class="container-fluid">
-            <h3 style="font-weight:bold; margin-left:1rem; margin-top:rem; margin-bottom:1rem;">ข้อมูลผู้ใช้</h3>
-            <table class="table table-success table table-striped" style="width: 80%;">
-                <thead>
-                    <th style="text-align: center;">จำนวนผู้ใช้</th>
-                    <th style="text-align: center;">ผู้ใช้ใหม่วันนี้</th>
-                    <th style="text-align: center;">คำขอเพิ่มเสิทธ์</th>
-                    <th style="text-align: center;">จัดการข้อมูล</th>
-                </thead>
-                <tbody>
-                    <td style="text-align: center;"><?php echo $count_member; ?> คน</td>
-                    <td style="text-align: center;"><?php echo $count_regis; ?> คน</td>
-                    <td style="text-align: center;"><?php echo $count_request; ?> คน</td>
-                    <td style="text-align: center;"><button class="btn btn-success"><a href="manage_member.php" style="text-decoration: none; color:white;">จ้ดการข้อมูล</a></button></td>
-                </tbody>
-            </table>
-            <h3 style="font-weight:bold; margin-left:1rem; margin-top:2rem; margin-bottom:1rem;">ข้อมูลคำสั่งซื้อ</h3>
-            <table class="table table-warning table table-striped" style="width: 80%;">
-                <thead>
-                    <th style="text-align: center;">คำสั้งทั้งหมด</th>
-                    <th style="text-align: center;">คำสั้งซื้อวันนี้</th>
-                    <th style="text-align: center;">รอดำเนินการ</th>
-                    <th style="text-align: center;">จัดการข้อมูล</th>
-                </thead>
-                <tbody>
-                    <td style="text-align: center;"><?php echo $data_count_order['total']; ?> รายการ</td>
-                    <td style="text-align: center;"><?php echo $data_count_today['today']; ?> รายการ</td>
-                    <td style="text-align: center;"><?php echo $data_count_inprogress['inprogress']; ?> รายการ</td>
-                    <td style="text-align: center;"><button class="btn btn-success"><a href="manage_order.php" style="text-decoration: none; color:white;">จ้ดการข้อมูล</a></button></td>
-                </tbody>
-            </table>
-            <h3 style="font-weight:bold; margin-left:1rem; margin-top:2rem; margin-bottom:1rem;">ข้อมูลสินค้า(เหลือน้อย)</h3>
-            <table class="table table-primary table table-striped" style="width: 80%;">
-                <thead>
-                    <th>รหัสสินค้า</th>
-                    <th>ชื่อสินค้า</th>
-                    <th>จำนวนคงเหลือ</th>
-                    <th>เพิ่มสินค้า</th>
-                </thead>
-                <tbody>
-                    <?php while ($data_product = $sql_product->fetch_assoc()) {
-                    ?>
-                        <tr>
-                            <td><?php echo $data_product['product_id'] . "<br>"; ?></td>
-                            <td><?php echo $data_product['product_name'] . "<br>"; ?></td>
-                            <td><?php echo $data_product['product_remain'] . "<br>"; ?></td>
-                            <td><button type="button" class="btn btn-primary"><a href="edit_product.php?product_id=<?php echo $data_product['product_id']; ?>" style="text-decoration:none; color:white;" target="_blank">จัดการ</button></td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
-                    <tr></tr>
-                </tbody>
-            </table>
+            <!-- <h2 style="text-align: center; font-weight:bold; margin-bottom:3rem; color:slategrey;">จัดการข้อมูลร้านค้า</h2> -->
+            <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">จัดการข้อมูลร้านค้า</h3>
+            <div class="col-10" style="margin:auto auto 2rem;"  >
+                <h5 style="font-weight:bold; text-align:left; color:slategrey;"><i class="bi bi-person-lines-fill"></i>&nbsp;ข้อมูลผู้ใช้</h5>
+                <table class="table table-light table-striped bdr" style="width: 100%;">
+                    <thead>
+                        <th>จำนวนผู้ใช้</th>
+                        <th>ผู้ใช้ใหม่วันนี้</th>
+                        <th>คำขอเพิ่มเสิทธ์</th>
+                        <th>จัดการข้อมูล</th>
+                    </thead>
+                    <tbody>
+                        <td><?php echo $count_member; ?> คน</td>
+                        <td><?php echo $count_regis; ?> คน</td>
+                        <td><?php echo $count_request; ?> คน</td>
+                        <td><button class="btn btn_navy"><a href="manage_member.php" style="text-decoration: none; color:white;">จ้ดการข้อมูล</a></button></td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-10" style="margin:auto auto 2rem;">
+                <h5 style="font-weight:bold; text-align:left; color:slategrey;"><i class="bi bi-card-list"></i>&nbsp;ข้อมูลคำสั่งซื้อ</h5>
+                <table class="table table-light table-striped bdr" style="width: 100%;">
+                    <thead>
+                        <th>คำสั้งทั้งหมด</th>
+                        <th>คำสั้งซื้อวันนี้</th>
+                        <th>รอดำเนินการ</th>
+                        <th>จัดการข้อมูล</th>
+                    </thead>
+                    <tbody>
+                        <td><?php echo $data_count_order['total']; ?> รายการ</td>
+                        <td><?php echo $data_count_today['today']; ?> รายการ</td>
+                        <td><?php echo $data_count_inprogress['inprogress']; ?> รายการ</td>
+                        <td><button class="btn btn_navy"><a href="manage_order.php" style="text-decoration: none; color:white;">จ้ดการข้อมูล</a></button></td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-10" style="margin:auto auto 2rem;">
+                <h5 style="font-weight:bold; text-align:left; color:slategrey;"><i class="bi bi-list-ol"></i>&nbsp; ข้อมูลสินค้า&nbsp;(เหลือน้อย)</h5>
+                <table class="table table-light table-striped bdr" style="width: 100%;">
+                    <thead>
+                        <th></th>
+                        <th>ชื่อสินค้า</th>
+                        <th>คงเหลือ</th>
+                        <th>เพิ่มสินค้า</th>
+                    </thead>
+                    <tbody>
+                        <?php while ($data_product = $sql_product->fetch_assoc()) {
+                        ?>
+                            <tr>
+                                <td style="text-align: center; padding-left:1rem;"><span class="badge" style="background-color:#021b39 ;"><?php echo $data_product['product_id']; ?></span></td>
+                                <td style="text-align: left;"><?php echo $data_product['product_name']; ?></td>
+                                <td style="text-align: center; color:darkred; font-weight:bold"><?php echo number_format($data_product['product_remain']); ?></td>
+                                <td style="padding-right: 1rem ;"><button type="button" class="btn btn_navy"><a href="edit_product.php?product_id=<?php echo $data_product['product_id']; ?>" style="text-decoration:none; color:white;" target="_blank">จัดการข้อมูล</button></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <?php include 'partition/footer.php'; ?>

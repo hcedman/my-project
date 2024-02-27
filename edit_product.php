@@ -108,9 +108,9 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     }
     ?>
     <form action="" method="POST" enctype="multipart/form-data">
-        <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding-top:3rem;">
-            <h3 style="font-weight:bold; margin-left:4rem; margin-bottom:2rem;">แก้ไขข้อมูลสินค้า</h3>
-            <div class="row" style="padding-left:4rem; margin-top:2rem;">
+        <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding-top:3rem; ">
+        <h3 style="font-weight:bold; color:#021b39; text-align:center;">แก้ไขข้อมูลสินค้า</h3>
+            <div class="row" style="padding-left:5rem; margin-top:2rem;">
                 <div class="col-lg-12" style="margin-top: 15px; margin-bottom: 10px;" id="box1">
                     <label for="product_name" class="form-label">ชื่อสินค้า</label>
                     <input type="text" class="form-control" name="product_name" id="product_name" value="<?php echo $stmt_edit_product['product_name']; ?>">

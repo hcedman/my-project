@@ -39,7 +39,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     include 'partition/menu_manage.php'; ?>
 
     <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding: 3rem; min-height:60vh;">
-        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem;">คำขอสิทธิดูแลระบบ</h3>
+        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">คำขอสิทธิดูแลระบบ</h3>
         <table class="table table-hover">
             <thead>
                 <tr>

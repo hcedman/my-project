@@ -16,7 +16,6 @@ session_start();
     <script>
     </script>
     <style>
-
     </style>
     <script>
 
@@ -27,14 +26,12 @@ session_start();
 <body>
     <?php include 'partition/header.php' ?>
     <?php include 'partition/menu_index.php' ?>
-<div class="container-lg bg-white" style="margin-top:8px; padding: 3rem; min-height: 75vh ;">
-    <h3>เกี่ยวกับเรา</h3>
-    <div class="alert alert-secondary " role="alert" style="margin-top: 1rem;;">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; เว็บไซต์นี้จัดทำขึ้นสำหรับทดสอบโปรเจคระบบร้านค้าออนไลน์เท่านั้นไม่มีวัตถุประสงค์เชิงพานิชญ์ใดๆทั้งสิ้น ฉะนั้นผู้ใช้งานไม่จำเป็นต้องใส่ข้อมูลส่วนตัวและที่อยู่จริงๆ เพื่อสมัครสมาชิกหรือสั่งซื้อสินค้ากับเว็บไซต์
+    <div class="container-lg bg-white" style="margin-top:8px; padding: 3rem; min-height: 75vh ;">
+        <h3>เกี่ยวกับเรา</h3>
+        <div class="alert alert-secondary " role="alert" style="margin-top: 1rem;;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; เว็บไซต์นี้จัดทำขึ้นสำหรับทดสอบโปรเจคระบบร้านค้าออนไลน์เท่านั้นไม่มีวัตถุประสงค์เชิงพานิชญ์ใดๆทั้งสิ้น ฉะนั้นผู้ใช้งานไม่จำเป็นต้องใส่ข้อมูลส่วนตัวและที่อยู่จริงๆ เพื่อสมัครสมาชิกหรือสั่งซื้อสินค้ากับเว็บไซต์
+        </div>
     </div>
-</div>
-
-
 
     <?php include 'partition/footer.php'; ?>
 </body>
