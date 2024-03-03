@@ -141,8 +141,8 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                 </div>
                 <br><br><br><br>
                 <div class="col-lg-8" id="box6">
-                    <button class="btn btn-success" type="submit" name="btn_submit" id="btn_submit" style="font-weight:bold;">บันทึกข้อมูล</button>
-                    <button class="btn btn-danger" name="btn_cancel" style="font-weight:bold ;"><a href="manage_product.php" style="text-decoration:none; font-weight:bold; color:white">ยกเลิก</a></button>
+                    <button class="btn btn-success" type="submit" name="btn_submit" id="btn_submit" style="font-weight:500;">บันทึกข้อมูล</button>
+                    <button class="btn btn-danger" name="btn_cancel" style="font-weight:bold ;"><a href="manage_product.php" style="text-decoration:none; font-weight:500; color:white">ยกเลิก</a></button>
                 </div><br><br><br><br>
             </div>
         </div>

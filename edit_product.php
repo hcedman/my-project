@@ -30,12 +30,13 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
         #picture_no,
         #picture_src,
         #picture_btn {
-            margin: 1rem 0px 0px 1rem;
+            margin: 0.5rem 0px 0.5px 1rem;
             border-style: dashed;
             border-color: lightsteelblue;
             display: flex;
             justify-content: center;
             align-items: center;
+            border-radius: 10px;
         }
     </style>
 
@@ -187,8 +188,8 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                 }
                 ?>
                 <div class="col-lg-8" id="box6" style="margin-top: 2rem;">
-                    <button class="btn btn-success" type="submit" name="btn_submit" id="btn_submit" style="font-weight:bold;">บันทึกข้อมูล</button>
-                    <button class="btn btn-danger" name="btn_cancel" style="font-weight:bold ;"><a href="manage_product.php" style="text-decoration:none; font-weight:bold; color:white">ยกเลิก</a></button>
+                    <button class="btn btn-success" type="submit" name="btn_submit" id="btn_submit" style="font-weight:500;">บันทึกข้อมูล</button>
+                    <button class="btn btn-danger" name="btn_cancel" style="font-weight:bold ;"><a href="manage_product.php" style="text-decoration:none; font-weight:500; color:white">ยกเลิก</a></button>
                 </div><br><br><br><br>
             </div>
         </div>

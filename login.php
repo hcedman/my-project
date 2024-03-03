@@ -15,8 +15,123 @@ include 'connect.php';
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="script.js"></script>
+    <script src="script.js"> </script>
+    <script language="javascript">
+        $(document).ready(function() {
+            $('#login_name').blur(function() {
+                const loginName = $('#login_name').val();
+                if (loginName !== "") {
+                    $('#check_firstname').text("1");
+                } else {
+                    $('#check_firstname').text("0");
+                }
+                checkData();
+            });
+
+            $('#login_lastname').blur(function() {
+                const loginLastname = $('#login_lastname').val();
+
+                if (loginLastname !== "") {
+                    $('#check_lastname').text("1");
+                } else {
+                    $('#check_lastname').text("0");
+                }
+                checkData();
+            });
+
+            $('#login_mail').blur(function() {
+                var value = $('#login_mail').val();
+                var data = {
+                    'email': value
+                };
+                $.ajax({
+                    url: 'function.php',
+                    type: 'get',
+                    data: data,
+                    success: function(result) {
+                        console.log(result);
+                        if (result == 0) {
+                            $('#available').attr('hidden', true);
+                            $('#notAvailable').removeAttr('hidden');
+                            $('#check_email').text("0");
+                        } else if (result == 1) {
+                            $('#available').removeAttr('hidden');
+                            $('#notAvailable').attr('hidden', true);
+                            $('#check_email').text("1");
+                        } else {
+                            $('#available').attr('hidden', true);
+                            $('#notAvailable').attr('hidden', true);
+                            $('#check_email').text("0");
+                        }
+                    }
+                });
+                checkData();
+            });
+
+            $('#login_pass').blur(function() {
+                const loginPassword = $('#login_pass').val();
+                if (loginPassword !== "") {
+                    let lengthPassword = loginPassword.length;
+                    if (lengthPassword >= 8) {
+                        $("#password_hide").attr("hidden", true);
+                        $('#check_password').text("1");
+                    } else {
+                        $("#password_hide").removeAttr('hidden');
+                        $('#check_password').text("0");
+                    }
+                } else {
+                    $('#check_password').text("0");
+                }
+                checkData();
+            });
+
+            function checkData() {
+                var checkFirstname = $('#check_firstname').text();
+                var checkLastname = $('#check_lastname').text();
+                var checkEmail = $('#check_email').text();
+                var checkPassword = $('#check_password').text();
+                if (checkFirstname == 1 && checkLastname == 1 && checkEmail == 1 && checkPassword == 1) {
+                    $('#regis').removeAttr("disabled");
+                } else {
+                    $('#regis').attr('disabled', 'disabled');
+                }
+                if ($('#login_mail').val() == "") {
+                    $('#available').attr('hidden', true);
+                    $('#notAvailable').attr('hidden', true);
+                }
+            }
+
+            $('#reset_link').click(function() {
+                alert('ยังไม่เปิดให้บริการ');
+            });
+        })
+    </script>
     <style>
+        #available,
+        #notAvailable,
+        #password_hide {
+            margin-left: 0.5rem;
+            font-size: smaller;
+        }
+
+        #register_box {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            border-color: #EAEDF1;
+            border-style: solid;
+            border-top: 0px;
+            border-bottom: 0px;
+            border-left: 0px;
+        }
+
+        #login_box {
+            display: flex;
+            justify-content: stretch;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 
     <title>Benz Online</title>
@@ -75,115 +190,97 @@ include 'connect.php';
         }
     }
     ?>
-    <a href="index2.php"></a>
-    <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; ">
+    <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding-bottom:4rem; ">
         <br><br>
         <div class="row">
-            <div class="col-12" style="text-align:center; font-weight:bold ; font-size: larger;"><span>สมัครสมาชิก</span></div>
+            <div class="col-12" style="text-align:center; font-weight:bold ; font-size: larger; margin-bottom:2rem;">
+                <h3>สมัครสมาชิก</h3>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6">
+        <div class="row" id="">
+            <div class="col-sm-6" id="register_box">
                 <form method="POST" action="">
-                    <div class="row" style="margin-top:30px; margin-bottom:15px ;">
-                        <div class="col-10" style="text-align:center ;"><span style="font-weight:bold;">ลงทะเบียนสำหรับสมาชิกใหม่</span></div>
+                    <div class="col-11" style="text-align:center; width:100%; margin: 0px auto 2rem;">
+                        <h5 style="color:#566573;">ลงทะเบียนสำหรับสมาชิกใหม่</h5>
                     </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
-                                <label for="login_name" class="form-label">ชื่อ</label>
-                                <input type="text" class="form-control" id="login_name" placeholder="กรอกชื่อ" name="input_fname">
+                    <div class="col-11">
+                        <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
+                            <label for="login_name" class="form-label">ชื่อ</label>
+                            <input type="text" class="form-control" id="login_name" placeholder="กรอกชื่อ" name="input_fname">
+                            <span id="check_firstname" hidden>0</span>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
+                            <label for="login_lastname" class="form-label">นามสกุล</label>
+                            <input type="text" class="form-control" id="login_lastname" placeholder="กรอกนามสกุล" name="input_lname">
+                            <span id="check_lastname" hidden>0</span>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
+                            <label for="login_mail" class="form-label">อีเมลหรือชื่อผู้ใช้</label>
+                            <input type="text" class="form-control" id="login_mail" placeholder="กรอกอีเมล" name="input_email">
+                            <span hidden id="available" style="color:darkgreen; font-weight:400;">&#10004;สามารถใช้ e-mail นี้ได้</span>
+                            <span hidden id="notAvailable" style="color:darkred;  font-weight:400;">&#10006;ไม่สามารถใช้ e-mail นี้ได้</span>
+                            <span id="check_email" hidden>0</span>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
+                            <label for="login_pass" class="form-label">รหัสผ่าน</label>
+                            <input type="password" class="form-control" id="login_pass" placeholder="กรอกรหัสผ่าน" name="input_pass">
+                            <span hidden id="password_hide" style="color:darkred; font-weight:400;">&#10006;รหัสผ่านอย่างน้อย 8 ตัว</span>
+                            <span id="check_password" hidden>0</span>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <div style="margin-bottom:20px; margin-top: 0px; padding-left:10%;">
+                            <span>รหัสผ่านต้องประกอบด้วยตัวเลขหรือตัวอักษรไม่ต่ำกว่า 8 ตัว</span>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="input_status">
+                                <label for="" class="form-check-label">ข้าพเจ้าต้องการสิทธ์ผู้ดูแลระบบเพื่อทดลองใช้งานระบบหลังบ้าน</label>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
-                                <label for="login_lastname" class="form-label">นามสกุล</label>
-                                <input type="text" class="form-control" id="login_lastname" placeholder="กรอกสกุล" name="input_lname">
-                            </div>
+                    <div class="col-11">
+                        <div style="margin-bottom:20px; margin-top: 0px; padding-left:10%;">
+                            <div class="alert alert-secondary">คำขอสิทธ์ผู้ดูแลระบบนี้ใช้เวลาอนุมัติใน 1 วันกรณีต้องการด่วนกรุณาติดต่อทางอีเมลใน resume ระหว่างรออนุมัติท่านจะอยู่ในสถานะ member ครับ</div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
-                                <label for="login_mail" class="form-label">อีเมล</label>
-                                <input type="text" class="form-control" id="login_mail" placeholder="กรอกอีเมล" name="input_email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
-                                <label for="login_pass" class="form-label">รหัสผ่าน</label>
-                                <input type="password" class="form-control" id="login_pass" placeholder="กรอกรหัสผ่าน" name="input_pass">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="margin-bottom:20px; margin-top: 0px; padding-left:10%;">
-                                <span>รหัสผ่านต้องเป็นภาษาอังกฤษประกอบด้วยตัวพิมพ์ใหญ่อย่างน้อย 1 ตัว ตัวพิมพ์เล็กอย่างน้อย 1 ตัว และตัวเลขอย่างน้อย 1 ตัว รวมกันไม่ต่ำกว่า 8 ตัว</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="input_status">
-                                    <label for="" class="form-check-label">ข้าพเจ้าต้องการสิทธ์ผู้ดูแลระบบเพื่อทดลองใช้งานระบบหลังบ้าน</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="margin-bottom:20px; margin-top: 0px; padding-left:10%;">
-                                <div class="alert alert-secondary">คำขอสิทธ์ผู้ดูแลระบบนี้ใช้เวลาอนุมัติใน 1 วันกรณีต้องการด่วนกรุณาติดต่อทางอีเมลใน resume ระหว่างรออนุมัติท่านจะอยู่ในสถานะ member ครับ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class=" col-10" style="padding-bottom: 15px; padding-left:7%;">
-                            <div style="padding-left:20px ;">
-                                <button type="submit" class="btn btn-primary btn-block" id="regis" name="btn_register" style="width:100% ;">สมัครสมาชิก</button>
-                            </div>
+                    <div class=" col-11" style="padding-bottom: 15px;">
+                        <div style="padding-left:10%;">
+                            <button type="submit" disabled class="btn btn-primary btn-block" id="regis" name="btn_register" style="width:100% ;">สมัครสมาชิก</button>
                         </div>
                     </div>
                 </form>
             </div>
-
-            <div class="d-none d-sm-flex col-1" style="display:flex; align-items:center;"><img src="img/split.jpg" alt=""></div>
-
-            <div class="col-sm-5">
-                <form method="POST" action="">
-                    <div class="row" style="margin-top:30px; margin-bottom:15px ;">
-                        <div class="col-10" style="text-align:center ;"><span style="font-weight:bold;">เข้าสู่ระบบ</span></div>
+            <!-- <div class="d-none d-sm-flex col" style="display:flex; align-items:center; justify-content:center; width: 10px; border-style:dotted;"><img src="img/split.jpg" alt=""></div> -->
+            <div class="col-sm-6" id="login_box" style="padding-right:4rem; padding-left: 4rem;">
+                <form method="POST" action="" style=" width:100%;">
+                    <div class="col-12" style="text-align:center; width:100%; margin: 0px auto 2rem;">
+                        <h5 style="color:#566573;">เข้าสู่ระบบ</h5>
                     </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="margin-bottom: 15px; margin-top: 0px; padding-left: 20px;">
-                                <label for="login_pass" class="form-label">อีเมล</label>
-                                <input type="text" class="form-control" id="login_pass" name="login_user" placeholder="กรอกรหัสผ่าน">
-                            </div>
+                    <div class="col-12">
+                        <div style="margin-bottom: 15px; margin-top: 0px; ">
+                            <label for="login_pass" class="form-label">อีเมล</label>
+                            <input type="text" class="form-control" id="login_pass" name="login_user" placeholder="กรอกอีเมลหรือชื่อผู้ใช้">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="margin-bottom: 15px; margin-top: 0px; padding-left: 20px;">
-                                <label for="login_pass" class="form-label">รหัสผ่าน</label>
-                                <input type="password" class="form-control" id="login_pass" name="login_pass" placeholder="กรอกรหัสผ่าน">
-                            </div>
+                    <div class="col-12">
+                        <div style="margin-bottom: 15px; margin-top: 0px; ">
+                            <label for="login_pass" class="form-label">รหัสผ่าน</label>
+                            <input type="password" class="form-control" id="login_pass" name="login_pass" placeholder="กรอกรหัสผ่าน">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-10" style="text-align:right ;"><a href="">ลืมรหัสผ่าน?</a></div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col-10">
-                            <div style="padding-left:20px ;">
-                                <button type="submit" class="btn btn-primary btn-block" id="btn_login" name="btn_login" style="width:100% ;">เข้าสู่ระบบ</button>
-                            </div>
+                    <div class="col-12" style="text-align:right; margin-bottom:0.5rem;"><a href="" style="text-decoration:none;" id="reset_link">ลืมรหัสผ่าน?</a></div>
+                    <div class="col-12">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-block" id="btn_login" name="btn_login" style="width:100% ;">เข้าสู่ระบบ</button>
                         </div>
                     </div>
                 </form>
@@ -191,7 +288,8 @@ include 'connect.php';
         </div>
     </div>
     <script src="script.js"></script>
+    <?php include 'partition/footer.php'; ?>
 </body>
-<?php include 'partition/footer.php';  ?>
+
 
 </html>

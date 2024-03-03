@@ -31,6 +31,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
         th {
             text-align: center;
             color: #021b39;
+            font-weight:600 ;
         }
 
         td {
@@ -83,7 +84,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             <!-- <h2 style="text-align: center; font-weight:bold; margin-bottom:3rem; color:slategrey;">จัดการข้อมูลร้านค้า</h2> -->
             <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">จัดการข้อมูลร้านค้า</h3>
             <div class="col-10" style="margin:auto auto 2rem;"  >
-                <h5 style="font-weight:bold; text-align:left; color:slategrey;"><i class="bi bi-person-lines-fill"></i>&nbsp;ข้อมูลผู้ใช้</h5>
+                <h5 style="font-weight:500; text-align:left; color:slategrey;"><i class="bi bi-person-lines-fill"></i>&nbsp;ข้อมูลผู้ใช้</h5>
                 <table class="table table-light table-striped bdr" style="width: 100%;">
                     <thead>
                         <th>จำนวนผู้ใช้</th>
@@ -100,7 +101,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                 </table>
             </div>
             <div class="col-10" style="margin:auto auto 2rem;">
-                <h5 style="font-weight:bold; text-align:left; color:slategrey;"><i class="bi bi-card-list"></i>&nbsp;ข้อมูลคำสั่งซื้อ</h5>
+                <h5 style="font-weight:500; text-align:left; color:slategrey;"><i class="bi bi-card-list"></i>&nbsp;ข้อมูลคำสั่งซื้อ</h5>
                 <table class="table table-light table-striped bdr" style="width: 100%;">
                     <thead>
                         <th>คำสั้งทั้งหมด</th>
@@ -117,7 +118,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                 </table>
             </div>
             <div class="col-10" style="margin:auto auto 2rem;">
-                <h5 style="font-weight:bold; text-align:left; color:slategrey;"><i class="bi bi-list-ol"></i>&nbsp; ข้อมูลสินค้า&nbsp;(เหลือน้อย)</h5>
+                <h5 style="font-weight:500; text-align:left; color:slategrey;"><i class="bi bi-list-ol"></i>&nbsp; ข้อมูลสินค้า&nbsp;(เหลือน้อย)</h5>
                 <table class="table table-light table-striped bdr" style="width: 100%;">
                     <thead>
                         <th></th>

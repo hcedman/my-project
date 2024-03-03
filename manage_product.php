@@ -30,17 +30,22 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
         .page-item.active .page-link {
             background-color: #021b39;
             border: #021b39;
-            font-weight: bold;
+
         }
         .pagination>li>a {
             color: #021b39;
-            font-weight: bold;
+            font-weight:500;
         }
         th{
             color:gray;
             font-size:medium;
-            font-weight:bold;
+            font-weight:500;
   
+        }
+        #product_tap1, #product_tap2, #product_tap3, #product_tap4{
+            color: #566573;
+            font-weight:500;
+            
         }
     </style>
 
@@ -57,16 +62,16 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
         <div style="margin: 3rem auto 2rem ">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="manage_product.php">สินค้าทั้งหมด</a>
+                    <a class="nav-link active" id="product_tap1" aria-current="page" href="manage_product.php">สินค้าทั้งหมด</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="manage_product.php?status=1">สินค้าปกติ</a>
+                    <a class="nav-link" id="product_tap2" href="manage_product.php?status=1">สินค้าปกติ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="manage_product.php?status=2">สินค้าใกล้หมด</a>
+                    <a class="nav-link" id="product_tap3" href="manage_product.php?status=2">สินค้าใกล้หมด</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="manage_product.php?status=0&s=0">สินค้ายกเลิกการขายแล้ว</a>
+                    <a class="nav-link" id="product_tap4" href="manage_product.php?status=0&s=0">สินค้ายกเลิกการขายแล้ว</a>
                 </li>
             </ul>
         </div>
@@ -127,18 +132,19 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                         }
                     ?>
                         <tr>
-                            <td style="text-align:center ;"><span class="badge" style="background-color: #021b39; font-size:small; font-weight:bolder; margin-top:0.6rem; "><?php echo $data['product_id']; ?></span></td>
+                            <td style="text-align:center ;"><span class="badge" style="background-color: #021b39; font-size:small; font-weight:bold; margin-top:0.6rem; "><?php echo $data['product_id']; ?></span></td>
                             <td><img src="upload/<?php echo $data_picture['picture_name']; ?>" style="width:5rem; height:5rem;" class="rounded mx-auto d-block"></td>
-                            <td><a href="product.php?id=<?php echo $data['product_id'];  ?>" target="_blank" style="text-decoration:none; color:black; font-weight:bold; font-size:small;"><?php echo $data['product_name']; ?></a></td>
-                            <td style="font-weight: bold;"><?php echo $data['product_type']; ?></td>
+                            <td><a href="product.php?id=<?php echo $data['product_id'];  ?>" target="_blank" style="text-decoration:none; color:#2D3034; font-size:small; font-weight: 400;"><?php echo $data['product_name']; ?></a></td>
+                            <td style=""><?php echo $data['product_type']; ?></td>
                             <td><span class="badge bg-success" id="badge_status"><?php echo $status ?></span></td>
-                            <td style="text-align:center; font-weight:bold;"><?php echo number_format($data['product_remain']) ?></td>
-                            <td style="text-align:right; font-weight:bold; color:darkred"><?php echo number_format($data['product_price'], 2); ?></td>
+                            <td style="text-align:center;"><?php echo number_format($data['product_remain']) ?></td>
+                            <td style="text-align:right; font-weight:500; color:darkred"><?php echo number_format($data['product_price'], 2); ?></td>
                             <td width="180px">
                                 <div class="btn btn-group" style="padding:0%;">
                                     <button class="btn btn-warning"><a href="edit_product.php?product_id=<?php echo $data['product_id']; ?>" style="text-decoration:none; color:white;"><i class="bi bi-pencil-square"></i></a></button>
-                                    <button class="btn btn-danger" style="font-weight: bold;" id="btn_close" onclick="alertConfirm('ปิด','เมื่อปิดการขายสินค้านี้จะไม่ปรากฏในรายการค้นหาสินค้า','manage_product.php?page=<?php echo $page; ?>&update_id=<?php echo $data['product_id']; ?>&val=0')">ปิดขาย</button>
-                                    <button class="btn btn-success" style="font-weight: bold;" id="btn_open" onclick="alertConfirm('เปิด','ต้องการเปิดการขายสินค้านี้หรือไม่','manage_product.php?page=<?php echo $page; ?>&update_id=<?php echo $data['product_id']; ?>&val=1')">เปิดขาย</button>
+                                    <button class="btn btn-success" style="font-weight: 500;" id="btn_open" onclick="alertConfirm('เปิด','ต้องการเปิดการขายสินค้านี้หรือไม่','manage_product.php?page=<?php echo $page; ?>&update_id=<?php echo $data['product_id']; ?>&val=1')">เปิดขาย</button>
+                                    <button class="btn btn-danger" style="font-weight:500;" id="btn_close" onclick="alertConfirm('ปิด','เมื่อปิดการขายสินค้านี้จะไม่ปรากฏในรายการค้นหาสินค้า','manage_product.php?page=<?php echo $page; ?>&update_id=<?php echo $data['product_id']; ?>&val=0')">ปิดขาย</button>
+
                                 </div>
                             </td>
                         </tr>

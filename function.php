@@ -1,6 +1,6 @@
-<script src="script.js"></script>
+
 <?php
-require_once 'connect.php';
+include 'connect.php';
 
 // Delete cart list
 if(isset($_GET['delete_id'])){
@@ -14,4 +14,20 @@ if(isset($_GET['delete_id'])){
     }
 }
 
+
+if(isset($_GET['email'])){
+    $email = $_GET['email'];
+    $sql_check = $conn->query("select member_email from member where member_email = '$email'");
+    $count = $sql_check->num_rows;
+    if($count > 0){
+        echo "0";
+    }else{
+        echo "1";
+    }
+}
+
+
+
+
 ?>
+

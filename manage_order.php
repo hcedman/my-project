@@ -28,16 +28,14 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             text-decoration: none;
             font-weight: bold;
         }
-
-        .btn,
         th{
             color:gray;
             font-size:medium;
-            font-weight:bold;
+            font-weight:600;
   
         }
         td {
-            font-weight: bold;
+            /* font-weight: bold; */
             white-space: nowrap;
             overflow: auto;
             vertical-align: middle;
@@ -53,7 +51,9 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             color: #021b39;
             font-weight: bold;
         }
-
+        .fo-sty{
+            font-weight:500;
+        }
     </style>
     <title>Benz Online</title>
 </head>
@@ -106,33 +106,33 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                         <td style="text-align:center ;"><?php echo $data_order['member_id']; ?></td>
                         <td><?php echo $data_order['order_firstname'] . "&nbsp" . $data_order['order_lastname']; ?></td>
                         <td style="text-align:center;"><?php echo $data_order['order_date']; ?></td>
-                        <td style="text-align:right ; color:darkred;"><?php echo number_format($data_order['order_total']); ?></td>
-                        <td style="text-align:center;"><button class="btn btn-warning" id="xxx"><a href="order_detail.php?order_id=<?php echo $data_order['order_id']; ?>" style="text-decoration:none; color:white;" target="_blank"><i class="bi bi-pencil-square"></i>&nbsp;รายละเอียด</a></button></td>
+                        <td style="text-align:right ; color:darkred; font-weight:500;"><?php echo number_format($data_order['order_total']); ?></td>
+                        <td style="text-align:center;"><button class="btn btn-warning fo-sty" id="xxx"><a href="order_detail.php?order_id=<?php echo $data_order['order_id']; ?>" style="text-decoration:none; color:white;" target="_blank"><i class="bi bi-pencil-square"></i>&nbsp;รายละเอียด</a></button></td>
                         <td>
                             <?php
                             $status = $data_order['order_status'];
                             if ($status == "inprogress") {
                             ?>
                                 <div class="btn btn-group" style="padding:0%;">
-                                    <button class="btn btn-primary" disabled><i class="bi bi-check-square-fill"></i>&nbsp;<span class="underline">INPROGRESS</span></button>
-                                    <button class="btn btn-secondary"><a href="manage_order.php?page=<?php echo $page; ?>&order_id=<?php echo $data_order['order_id']; ?>&order_status=finish" style="text-decoration:none; color:white;"><i class="bi bi-pencil-square"></i>&nbsp;FINISHED</a></button>
-                                    <button class="btn btn-secondary"><a href="manage_order.php?page=<?php echo $page; ?>&order_id=<?php echo $data_order['order_id']; ?>&order_status=cancel" style="text-decoration:none; color:white;"><i class="bi bi-pencil-square"></i>&nbsp;CANCEL</a></button>
+                                    <button class="btn btn-primary fo-sty" disabled><i class="bi bi-check-square-fill"></i>&nbsp;<span class="underline">INPROGRESS</span></button>
+                                    <button class="btn btn-secondary fo-sty"><a href="manage_order.php?page=<?php echo $page; ?>&order_id=<?php echo $data_order['order_id']; ?>&order_status=finish" style="text-decoration:none; color:white;"><i class="bi bi-pencil-square"></i>&nbsp;FINISHED</a></button>
+                                    <button class="btn btn-secondary fo-sty"><a href="manage_order.php?page=<?php echo $page; ?>&order_id=<?php echo $data_order['order_id']; ?>&order_status=cancel" style="text-decoration:none; color:white;"><i class="bi bi-pencil-square"></i>&nbsp;CANCEL</a></button>
                                 </div>
                             <?php
                             } elseif ($status == "finish") {
                             ?>
                                 <div class="btn btn-group" style="padding:0%;">
-                                    <button class="btn btn-secondary" disabled><i class="bi bi-pencil-square"></i>&nbsp;<span class="line-through">INPROGRESS</span></button>
-                                    <button class="btn btn-primary" disabled><i class="bi bi-check-square-fill"></i>&nbsp;<span class="underline">FINISHED</span></button>
-                                    <button class="btn btn-secondary"><a href="manage_order.php?page=<?php echo $page; ?>&order_id=<?php echo $data_order['order_id']; ?>&order_status=cancel" style="text-decoration:none; color:white;"><i class="bi bi-pencil-square"></i>&nbsp;CANCEL</a></button>
+                                    <button class="btn btn-secondary fo-sty" disabled><i class="bi bi-pencil-square"></i>&nbsp;<span class="line-through">INPROGRESS</span></button>
+                                    <button class="btn btn-primary fo-sty" disabled><i class="bi bi-check-square-fill"></i>&nbsp;<span class="underline">FINISHED</span></button>
+                                    <button class="btn btn-secondary fo-sty"><a href="manage_order.php?page=<?php echo $page; ?>&order_id=<?php echo $data_order['order_id']; ?>&order_status=cancel" style="text-decoration:none; color:white;"><i class="bi bi-pencil-square"></i>&nbsp;CANCEL</a></button>
                                 </div>
                             <?php
                             } else {
                             ?>
                                 <div class="btn btn-group" style="padding:0%;">
-                                    <button class="btn btn-secondary" disabled><i class="bi bi-pencil-square"></i>&nbsp;<span class="line-through">INPROGRESS</span></button>
-                                    <button class="btn btn-secondary" disabled><i class="bi bi-pencil-square"></i>&nbsp;<span class="line-through">FINISHED</span></button>
-                                    <button class="btn btn-danger" disabled><i class="bi bi-check-square-fill"></i>&nbsp;<span class="underline">CANCEL</span></button>
+                                    <button class="btn btn-secondary fo-sty" disabled><i class="bi bi-pencil-square"></i>&nbsp;<span class="line-through">INPROGRESS</span></button>
+                                    <button class="btn btn-secondary fo-sty" disabled><i class="bi bi-pencil-square"></i>&nbsp;<span class="line-through">FINISHED</span></button>
+                                    <button class="btn btn-danger fo-sty" disabled><i class="bi bi-check-square-fill"></i>&nbsp;<span class="underline">CANCEL</span></button>
                                 </div>
                             <?php
                             }

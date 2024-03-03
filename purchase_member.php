@@ -40,8 +40,12 @@ include 'connect.php';
         #a3,
         #a4 {
             text-decoration: none;
-            color: black;
-            font-weight: bold;
+            color: #566573;
+            font-weight:500;
+        }
+        #tab1, #tab2, #tab3, #tab4{
+            padding:2px;
+            width:100%;
         }
     </style>
     <title>Benz Online</title>
@@ -64,10 +68,10 @@ include 'connect.php';
         <div class="container-fluid container-lg bg-white" id="tap" style="margin-top:8px ;">
 
             <div class="row" style="text-align:center ;">
-                <div class="col-3" id="tap1" style="padding:2px;"><button class="btn shadow-none" style="width:100%;"><a id="a1" href="purchase_member.php?member_id=<?php echo $member_id; ?>&&status=all">ทั้งหมด</a></button></div>
-                <div class="col-3" id="tap2" style="padding:2px;"><button class="btn shadow-none" style="width:100%;"><a id="a2" href="purchase_member.php?member_id=<?php echo $member_id; ?>&&status=inprogress">กำลังดำเนินการ</a></button></div>
-                <div class="col-3" id="tap3" style="padding:2px;"><button class="btn shadow-none" style="width:100%;"><a id="a3" href="purchase_member.php?member_id=<?php echo $member_id; ?>&&status=finish">สำเร็จแล้ว</a></button></div>
-                <div class="col-3" id="tap4" style="padding:2px;"><button class="btn shadow-none" style="width:100%;"><a id="a4" href="purchase_member.php?member_id=<?php echo $member_id; ?>&&status=cancel">ยกเลิกแล้ว</a></button></div>
+                <div class="col-3" id="tap1"><button class="btn shadow-none"><a id="a1" href="purchase_member.php?member_id=<?php echo $member_id; ?>&&status=all">ทั้งหมด</a></button></div>
+                <div class="col-3" id="tap2"><button class="btn shadow-none"><a id="a2" href="purchase_member.php?member_id=<?php echo $member_id; ?>&&status=inprogress">กำลังดำเนินการ</a></button></div>
+                <div class="col-3" id="tap3"><button class="btn shadow-none"><a id="a3" href="purchase_member.php?member_id=<?php echo $member_id; ?>&&status=finish">สำเร็จแล้ว</a></button></div>
+                <div class="col-3" id="tap4"><button class="btn shadow-none"><a id="a4" href="purchase_member.php?member_id=<?php echo $member_id; ?>&&status=cancel">ยกเลิกแล้ว</a></button></div>
             </div>
         </div>
         <?php
@@ -105,10 +109,10 @@ include 'connect.php';
                 $result_product = $sql_product->fetch_assoc();
             ?>
                 <div class="row" style="border-bottom:1px; margin-top:1rem; margin-bottom:0.5rem;">
-                    <div class="col-2"><span style="font-weight:bold;">เลขที่ออเดอร์ &nbsp;<?php echo $result_order['order_id']; ?></span></div>
-                    <div class="col-7"><span style="font-weight:bold;">&nbsp;<?php echo $result_product['product_name']; ?></span></div>
+                    <div class="col-2"><span style="font-weight:500;">เลขที่ออเดอร์ &nbsp;<?php echo $result_order['order_id']; ?></span></div>
+                    <div class="col-7"><span style="font-weight:500;">&nbsp;<?php echo $result_product['product_name']; ?></span></div>
 
-                    <div class="col-3" style="text-align:right ; font-weight:bold;"><span>สถานะ&nbsp;:&nbsp;<?php echo $order_status; ?></span></div>
+                    <div class="col-3" style="text-align:right ; font-weight:600;"><span>สถานะ&nbsp;:&nbsp;<?php echo $order_status; ?></span></div>
                 </div>
                 <div class="row" style="border-bottom:1px; border-color:black">
                     <div class="col-2" style="border-bottom: 2px solid lightgray;"><img class=" img-thumbnail" style="height:7rem; width:7rem; margin-bottom:1rem" src="upload/<?php echo $result_product['picture_name']; ?>" alt=""></div>
@@ -124,7 +128,7 @@ include 'connect.php';
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><button class="btn btn-primary"><a target="_blank" href="order_detail.php?order_id=<?php echo $result_order['order_id']; ?>" style="text-decoration:none; font-weight:bold; color:white">รายละเอียด</a></button></td>
+                                <td><button class="btn btn-primary"><a target="_blank" href="order_detail.php?order_id=<?php echo $result_order['order_id']; ?>" style="text-decoration:none; font-weight:500; color:white">รายละเอียด</a></button></td>
                             </tr>
                         </table>
                     </div>

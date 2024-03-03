@@ -40,12 +40,12 @@ include 'connect.php';
             font-weight: bolder;
         }
         #box_price {
-            font-weight: bold;
+            font-weight:500;
             margin-left: 15px;
         }
         #span_price {
             font-size: xx-large;
-            font-weight: bolder;
+            font-weight:500;
             color: maroon;
         }
         #box_delivery,

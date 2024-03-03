@@ -18,11 +18,12 @@ session_start();
     <script>
     </script>
     <style>
-        /* .card {
-            width: 10rem;
-        } */
+        #box_product {
+            margin-bottom: 1rem;
+        }
+
         .card-text {
-            font-weight: bold;
+            font-weight: 400;
             white-space: nowrap;
             overflow: hidden;
             text-decoration: none;
@@ -31,6 +32,18 @@ session_start();
 
         .card:hover img {
             transform: scale(1.1);
+        }
+
+        #brand_box {
+            background-color: #EAF2F8;
+            margin: 0%;
+            padding: 0.5rem 0.2rem;
+            border-style: solid;
+            border-color: #021b39;
+            border-width: 5px;
+            border-top: 0px;
+            border-bottom: 0px;
+            height: auto;
         }
 
         #brand1,
@@ -49,28 +62,22 @@ session_start();
             margin: 0%;
         }
 
-        #brand_id1,
-        #brand_id2,
-        #brand_id3,
-        #brand_id4,
-        #brand_id5,
-        #brand_id6,
-        #brand_id7,
-        #brand_id8,
-        #brand_id9,
-        #brand_id10,
-        #brand_id11,
-        #brand_id12 {
+        #brand_img {
             width: 100%;
             height: auto;
             padding: 1px;
+        }
+
+        #brand_img:hover {
+            transform: scale(1.2);
+            box-shadow: #2D3034;
+            filter: drop-shadow(3px 2px 2px #53637F);
         }
     </style>
     <script>
         $(document).ready(function() {
             $('.card').on({
                 mouseenter: function() {
-                    // $(this).css("box-shadow", "0 4px 4px 0");
                     $(this).css("box-shadow", "0 0 4px #778899");
 
                 },
@@ -115,26 +122,26 @@ session_start();
             </button>
         </div>
     </div>
-    <div class="container-lg bg bg-white" style="padding: 0.5rem 1rem 1rem 1rem; " >
-        <div class="row">
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand1"><a href="search.php?search=apple" target="_blank"><img id="brand_id1" src="img/brand/apple.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand2"><a href="search.php?search=microsoft" target="_blank"><img id="brand_id2" src="img/brand/microsoft.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand3"><a href="search.php?search=asus" target="_blank"><img id="brand_id3" src="img/brand/asus.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand4"><a href="search.php?search=acer" target="_blank"><img id="brand_id4" src="img/brand/acer.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand5"><a href="search.php?search=lenovo" target="_blank"><img id="brand_id5" src="img/brand/lenovo.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand6"><a href="search.php?search=msi" target="_blank"><img id="brand_id6" src="img/brand/msi.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand7"><a href="search.php?search=xiaomi" target="_blank"><img id="brand_id7" src="img/brand/xiaomi.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand8"><a href="search.php?search=dell" target="_blank"><img id="brand_id8" src="img/brand/dell.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand9"><a href="search.php?search=lg" target="_blank"><img id="brand_id9" src="img/brand/lg.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand10"><a href="search.php?search=hp" target="_blank"><img id="brand_id10" src="img/brand/hp.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand11"><a href="search.php?search=samsung" target="_blank"><img id="brand_id11" src="img/brand/samsung.jpg" alt=""></a></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" id="brand12"><a href="search.php?search=viewsonic" target="_blank"><img id="brand_id12" src="img/brand/viewsonic.jpg" alt=""></a></div>
+    <div class="container-lg bg bg-white" style="padding: 0%;">
+        <div class="row" id="brand_box">
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand1"><a href="search.php?search=apple" target="_blank"><img id="brand_img" src="img/brand/apple.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand2"><a href="search.php?search=microsoft" target="_blank"><img id="brand_img" src="img/brand/microsoft.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand3"><a href="search.php?search=asus" target="_blank"><img id="brand_img" src="img/brand/asus.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand4"><a href="search.php?search=acer" target="_blank"><img id="brand_img" src="img/brand/acer.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand5"><a href="search.php?search=lenovo" target="_blank"><img id="brand_img" src="img/brand/lenovo.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand6"><a href="search.php?search=msi" target="_blank"><img id="brand_img" src="img/brand/msi.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand7"><a href="search.php?search=xiaomi" target="_blank"><img id="brand_img" src="img/brand/xiaomi.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand8"><a href="search.php?search=dell" target="_blank"><img id="brand_img" src="img/brand/dell.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand9"><a href="search.php?search=lg" target="_blank"><img id="brand_img" src="img/brand/lg.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand10"><a href="search.php?search=hp" target="_blank"><img id="brand_img" src="img/brand/hp.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand11"><a href="search.php?search=samsung" target="_blank"><img id="brand_img" src="img/brand/samsung.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand12"><a href="search.php?search=viewsonic" target="_blank"><img id="brand_img" src="img/brand/viewsonic.jpg" alt=""></a></div>
         </div>
     </div>
     <div class="container-lg bg-white">
         <div style="padding-top: 1rem; padding-bottom:1rem;">
             <div class="row">
-                <div class="col-lg-6" style="text-align:left;"><span style="color:#021b39; font-weight: bolder; font-size: large;">สินค้าแนะนำ</span></div>
+                <div class="col-lg-6" style="text-align:left;"><span style="color:#021b39; font-weight: bolder; font-size: large;">&nbsp;สินค้าแนะนำ</span></div>
                 <div class="col-lg-6" style="text-align:right;"><a href="search.php" style="text-decoration: none; color:#021b39; font-weight: bolder; font-size: large;">View All ></a></div>
             </div>
         </div>
@@ -146,14 +153,13 @@ session_start();
                 $product_id = $data_product['product_id'];
                 $sql_picture = $conn->query("select picture_name from picture where product_id = $product_id limit 1 ");
                 $data_picture = $sql_picture->fetch_assoc();
-
             ?>
-                <div class="col-lg-3" id="box_product">
-                    <div class="card" id="card_product" style="padding-top: 1rem;">
-                        <img style="height:12rem; width:12rem; display:block; margin-left:auto; margin-right:auto; " src="upload/<?php echo $data_picture['picture_name']; ?>" class="card-img" alt="" srcset="">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3" id="box_product">
+                    <div class="card" id="card_product" style="padding-top: 1rem;"><a href="product.php?id=<?php echo $data_product['product_id']; ?>">
+                            <img style="height:12rem; width:12rem; display:block; margin-left:auto; margin-right:auto; " src="upload/<?php echo $data_picture['picture_name']; ?>" class="card-img" alt="" srcset=""></a>
                         <div class="card-body">
-                            <h6 class="card-title" style="color:crimson; font-weight: bolder;">&#3647; <?php echo number_format($data_product['product_price']); ?></h6>
-                            <p class="card-text" style="text-overflow: ellipsis;"><a href="product.php?id=<?php echo $data_product['product_id']; ?>" style="text-decoration: none; color:black; font-weight:bold; font-size:small;" target="_blank"><?php echo $data_product['product_name']; ?></a></p>
+                            <h6 class="card-title" style="color:crimson; ;">&#3647; <?php echo number_format($data_product['product_price']); ?></h6>
+                            <p class="card-text" style="text-overflow: ellipsis;"><a href="product.php?id=<?php echo $data_product['product_id']; ?>" style="text-decoration: none; font-size:small; color:#2D3034;" target="_blank"><?php echo $data_product['product_name']; ?></a></p>
                         </div>
                     </div>
                 </div>

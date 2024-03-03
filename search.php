@@ -33,7 +33,7 @@ session_start();
 
         .pagination>li>a {
             color: #021b39;
-            font-weight: bold;
+            font-weight:500;
         }
 
         #btn_buy {
@@ -42,15 +42,15 @@ session_start();
 
         .card-title {
             color: firebrick;
-            font-weight: bold;
+            font-weight: 500;;
         }
 
         .card-text {
-            font-weight: bold;
+            font-weight:400;
             white-space: nowrap;
             overflow: hidden;
             text-decoration: none;
-            color: black;
+            color: #2D3034 ;
         }
 
         .card:hover img {
@@ -150,14 +150,14 @@ session_start();
                 }
                 ?>
                 <div style="margin-bottom: 1rem; padding-top:2rem;">
-                    <span style="color:#021b39; font-weight: bold;">ทั้งหมด <?php echo $total_s; ?> รายการ &nbsp;|&nbsp;</span>
-                    <span style="color:#021b39; font-weight: bold;">จำนวน <?php if ($tt = round($total_s / 12) <= 0) {
+                    <span style="color:#021b39; font-weight:500;">ทั้งหมด &nbsp;<?php echo $total_s; ?> รายการ &nbsp;|&nbsp;</span>
+                    <span style="color:#021b39; font-weight: 500;">จำนวน <?php if ($tt = round($total_s / 12) <= 0) {
                                                                                 $total_search = 1;
                                                                             } else {
                                                                                 $total_search = $tt;
                                                                             }
                                                                             echo $total_search; ?> หน้า &nbsp;|&nbsp;</span>
-                    <span style="color:#021b39; font-weight: bold;">หน้าละ 12 รายการ</span>
+                    <span style="color:#021b39; font-weight: 500;">หน้าละ 12 รายการ</span>
                 </div>
                 <div>
                     <hr size=5>
@@ -166,9 +166,9 @@ session_start();
             } else {
             ?>
                 <div style="margin-bottom: 1rem; padding-top:2rem;">
-                    <span style="color:#021b39; font-weight: bold;">ทั้งหมด <?php echo $total; ?> รายการ &nbsp;|&nbsp;</span>
-                    <span style="color:#021b39; font-weight: bold;">จำนวน <?php echo round($total / 12); ?> หน้า &nbsp;|&nbsp;</span>
-                    <span style="color:#021b39; font-weight: bold;">หน้าละ 12 รายการ</span>
+                    <span style="color:#021b39; font-weight:500;">ทั้งหมด &nbsp;<?php echo $total; ?>&nbsp; รายการ &nbsp;|&nbsp;</span>
+                    <span style="color:#021b39; font-weight:500;">จำนวน &nbsp;<?php echo round($total / 12); ?> &nbsp;หน้า &nbsp;|&nbsp;</span>
+                    <span style="color:#021b39; font-weight:500;">หน้าละ&nbsp; 12 &nbsp;รายการ</span>
                 </div>
                 <div>
                     <hr size=5>
@@ -193,7 +193,7 @@ session_start();
                                     <img style="height:12rem; width:12rem; display:block; margin-left:auto; margin-right:auto; " src="upload/<?php echo $data_picture['picture_name']; ?>" class="card-img" alt="" srcset="">
                                     <div class="card-body">
                                         <h6 class="card-title">&#3647;<?php echo number_format($data['product_price']); ?></h6>
-                                        <p class="card-text"><a href="product.php?id=<?php echo $data['product_id']; ?>" target="_blank" id="product_link" style="font-weight:bold; font-size:small;"><?php echo $data['product_name']; ?></a></p>
+                                        <p class="card-text"><a href="product.php?id=<?php echo $data['product_id']; ?>" target="_blank" id="product_link" style=" font-size:small;"><?php echo $data['product_name']; ?></a></p>
                                     </div>
                                 </div>
                             </div>

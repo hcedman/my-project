@@ -27,27 +27,27 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
         #linkp1 {
             color: white;
             text-decoration: none;
-            font-weight: bold;
+            /* font-weight: bold; */
         }
 
         .page-item.active .page-link {
             background-color: #021b39;
             border: #021b39;
-            font-weight: bold;
+            /* font-weight: bold; */
         }
 
         .pagination>li>a {
             color: #021b39;
-            font-weight: bold;
+            /* font-weight: bold; */
         }
         td{
             vertical-align: middle;
-            font-weight: bold;
+            /* font-weight: bold; */
         }
         th{
             color:gray;
             font-size:medium;
-            font-weight:bold;
+            /* font-weight:bold; */
   
         }
     </style>
@@ -105,14 +105,14 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
 
                 ?>
                     <tr>
-                        <td style="text-align:center;"><span class="badge" style="background-color: #021b39;"><?php echo $data['member_id']; ?></span></td>
+                        <td style="text-align:center;"><span class="badge" style="background-color: #021b39; font-size:small;"><?php echo $data['member_id']; ?></span></td>
                         <td style="text-align:left;"><a href="member.php?id=<?php echo $data['member_id'];  ?>" target="_blank" style="text-decoration:none; color:black;"><?php echo $data['member_firstname']; ?></a></td>
                         <td style="text-align:left;"><?php echo $data['member_lastname']; ?></td>
                         <td style="text-align:left;"><?php echo $data['member_email']; ?></td>
-                        <td style="text-align:center;"><span class="badge bg-primary" id="badge_status" style="font-size:small;"><?php echo $level; ?></span></td>
+                        <td style="text-align:center;"><span class="badge bg-primary" id="badge_status" style="font-size:small; font-weight:500;"><?php echo $level; ?></span></td>
                         <td align="center">
                             <div class="btn btn-group" style="padding:0%;">
-                                <button class="btn btn-primary"><a href="purchase_member.php?member_id=<?php echo $data['member_id']; ?>" target="_blank" style="text-decoration:none; color:white;"><span style="font-weight: bold;"><i class="bi bi-pencil-square"></i>&nbsp;รายการสั่งซื้อ</a></span></button>
+                                <button class="btn btn-primary"><a href="purchase_member.php?member_id=<?php echo $data['member_id']; ?>" target="_blank" style="text-decoration:none; color:white;"><span><i class="bi bi-pencil-square"></i>&nbsp;รายการสั่งซื้อ</a></span></button>
                                 <?php $link = "manage_member.php?member_id=" . $data['member_id'] . "&page=" . $page; ?>
                                 <button class="btn btn-danger" onclick="alertConfirm('ลบ','ยืนยันการลบบัญชีข้อมูลหรือไม่','<?php echo $link ?>')"><i class="bi bi-trash"></i></a></button>
                             </div>

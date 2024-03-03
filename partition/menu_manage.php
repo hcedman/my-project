@@ -7,14 +7,17 @@
     #link1,
     #link2,
     #link3,
-    #link4 {
+    #link4,
+    #btn_promotion
+    {
         color: white;
         text-decoration: none;
-        font-weight: bold;
+        font-weight:500;
     }
 
     .dropdown-menu>li>a {
-        font-weight: bold;
+        font-weight:400;
+        font-size:medium;
         color: #021b39;
     }
 
