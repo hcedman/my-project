@@ -38,14 +38,14 @@ session_start();
         }
     }
     ?>
-    <div class="container-lg bg-white" style="margin-top:8px; padding: 3rem; min-height: 75vh ;">
-        <h3>แนะนำการบริการ</h3><br>
+    <div class="container-lg bg-white" style="margin-top:8px; padding: 2rem 5rem; min-height: 75vh ;">
+        <h3 style="text-align: center; margin: 2rem auto 2rem;">แนะนำการบริการ</h3><br>
         <form action="" method="post">
             <div class="form-floating">
                 <textarea class="form-control" name="rec_data" id="rec_data" style="height: 8rem;;"></textarea>
                 <label for="rec_data">ใส่ข้อเสนอแนะเพื่อนำไปพัฒนาเว็บไซต์ต่อไป</label>
             </div>
-            <div>
+            <div style="display: flex; justify-content:center;">
                 <button type="submit" class="btn btn-success" style="margin-top:1rem;" name="btn_submit">ส่งความคิดเห็น</button>
             </div>
         </form>

@@ -48,11 +48,9 @@ body {
   font-size:medium;;
 }
 .nav_product_active{
-  font-weight:bolder;
   font-size:medium;
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-thickness: 4px;
-  text-decoration-color:tomato;
-  /* border-bottom: 4px solid red; */
+  text-decoration-thickness: 3px;
+  text-decoration-color:rgb(208, 222, 231);
 }

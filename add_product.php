@@ -35,6 +35,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     <?php include 'partition/header.php';
     include 'partition/menu_index.php';
     include 'partition/menu_manage.php';
+    include 'function.php';
     include 'connect.php';
     if (isset($_POST["btn_submit"])) {
         $product_name = $_POST["product_name"];
@@ -54,23 +55,19 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             if ($stmt) {
                 $record = $stmt->insert_id;
                 foreach ($_FILES['upload']['tmp_name'] as $key => $value) {
-                    $picture_name = $_FILES['upload']['name'][$key];
-                    $type = strrchr($_FILES['upload']['name'][$key], ".");
-                    $new_name = rand(0, microtime(true)) . $type;
-                    if (move_uploaded_file($_FILES['upload']['tmp_name'][$key], "upload/" . $new_name)) {
+                    $file_tmp = $_FILES['upload']['tmp_name'][$key];
+                    $file_name = $_FILES['upload']['name'][$key];
+                    if ($full_name =  image_resize($file_tmp, $file_name)) {
                         $sql_upload = "insert into picture (product_id, picture_name)values(?,?)";
-                        $data_upload = array($record, $new_name);
                         $stmt_upload = $conn->prepare($sql_upload);
-                        $stmt_upload->execute($data_upload);
+                        $stmt_upload->bind_param('is', $record, $full_name);
+                        $stmt_upload->execute();
                         if ($stmt_upload == true) {
                             echo "<script>alertInto('success','บันทึกข้อมูลเรียบร้อย','manage.php')</script>";
                         } else {
                             $cancel_record = $conn->query("delete from product where product_id = $record");
                             echo "<script>alertInto('error','บันทึกข้อมูลผิดพลาด','add_product.php')</script>";
                         }
-                    } else {
-                        $cancel_record = $conn->query("delete from product where product_id = $record");
-                        echo "<script>alertInto('error','บันทึกข้อมูลผิดพลาด','add_product.php')</script>";
                     }
                 }
             } else {
@@ -91,10 +88,9 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                     <label for="product_type">ประเภทสินค้า</label>
                     <select class="form-select" name="product_type" id="product_type" style="width:100%;">
                         <option value="">-- เลือกรายการ --</option>
-                        <option value="Monitor">Monitor</option>
-                        <option value="CPU">CPU</option>
-                        <option value="Mouse">Mouse</option>
-                        <option value="Keyboad">Keyboad</option>
+                        <option value="โน๊ตบุ๊ค">โน๊ตบุ๊ค</option>
+                        <option value="คอมพิวเตอร์ตั้งโต๊ะ">คอมพิวเตอร์ตั้งโต๊ะ</option>
+                        <option value="จอคอมพิวเตอร์">จอคอมพิวเตอร์</option>
                     </select>
                 </div>
                 <div class="col-lg-5 col-sm-5" id="box9" style="margin-right:0%; padding-right:0% ">
@@ -102,10 +98,17 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                     <select class="form-select" name="product_brand" id="product_brand" style="width:100%;">
                         <option value="">-- เลือกรายการ --</option>
                         <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
                         <option value="Acer">Acer</option>
-                        <option value="Lenovo">Lenovo</option>
-                        <option value="ASUS">ASUS</option>
+                        <option value="Dell">Dell</option>
                         <option value="HP">HP</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="LG">LG</option>
+                        <option value="Microsoft">Microsoft</option>
+                        <option value="MSI">MSI</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="ViewSonic">ViewSonic</option>
+                        <option value="Xiaomi">Xiaomi</option>
                     </select>
                 </div>
                 <div class="col-lg-12" id="box3" style="margin-bottom: 10px;">
@@ -136,13 +139,15 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                         <input type="number" class="form-control" placeholder="ระบุค่าจัดส่ง" aria-describedby="basic-addon1" name="product_delivery" id="product_delivery">
                     </div>
                 </div>
-                <div class="col-lg-12" id="box7">
-                    <input type="file" class="form-control" name="upload[]" id="product_picture" multiple="multiple">
+                <div class="col-lg-12" id="box7" style="display: flex; flex-wrap:wrap;">
+                    <input type="file" class="form-control" name="upload[]" id="product_picture" multiple="multiple" style="margin-bottom: 1rem;;">
+                    <div class="alert alert-secondary" role="alert" style=""><i class="bi bi-info-circle"></i>&nbsp;
+                    ควรใช้รูปขนาด 800 x 800 และขนาดไฟล์ไม่เกิน 2 MB เพื่อการแสดงผลที่เหมาะสมและลดการบีดอัดภาพ</div>
                 </div>
                 <br><br><br><br>
-                <div class="col-lg-8" id="box6">
-                    <button class="btn btn-success" type="submit" name="btn_submit" id="btn_submit" style="font-weight:500;">บันทึกข้อมูล</button>
-                    <button class="btn btn-danger" name="btn_cancel" style="font-weight:bold ;"><a href="manage_product.php" style="text-decoration:none; font-weight:500; color:white">ยกเลิก</a></button>
+                <div class="col-lg-11" id="box6" style="display:flex; justify-content:center; padding:1rem 1rem 2rem 1rem;">
+                <button class="btn btn-danger" name="btn_cancel" style="font-weight:bold ;"><a href="manage_product.php" style="text-decoration:none; font-weight:500; color:white">ยกเลิก</a></button>
+                    <button class="btn btn-success" type="submit" name="btn_submit" id="btn_submit" style="font-weight:500; margin-left:0.5rem;">บันทึกข้อมูล</button>
                 </div><br><br><br><br>
             </div>
         </div>

@@ -1,0 +1,54 @@
+#box_result {
+  background-color: white;
+  margin-top: 8px;
+  padding-top: 2rem;
+}
+
+.row {
+  justify-content: first baseline;
+  align-items: center;
+}
+
+.page-item.active .page-link {
+  background-color: #021b39;
+  border: #021b39;
+  font-weight: bold;
+}
+
+.pagination > li > a {
+  color: #021b39;
+  font-weight: 500;
+}
+
+#btn_buy {
+  font-weight: bolder;
+}
+
+.card-title {
+}
+.card-title > a {
+  text-decoration: none;
+  color: crimson;
+}
+
+.card-text {
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.card:hover img {
+  transition: 0.5s;
+  transform: scale(1.1);
+}
+
+#box_page {
+  padding-bottom: 2rem;
+}
+
+#product_link {
+  text-decoration: none;
+  font-size: small;
+  color: #2d3034;
+}

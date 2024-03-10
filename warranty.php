@@ -27,8 +27,8 @@ session_start();
 <body>
     <?php include 'partition/header.php' ?>
     <?php include 'partition/menu_index.php' ?>
-<div class="container-lg bg-white" style="margin-top:8px; padding: 3rem; min-height: 75vh ;">
-    <h3>การรับประกันสินค้า</h3>
+<div class="container-lg bg-white" style="margin-top:8px; padding: 2rem 3rem; min-height: 75vh ;">
+    <h3 style="text-align: center; margin: 2rem auto 3rem;">การรับประกันสินค้า</h3>
     <div class="alert alert-secondary " role="alert" style="margin-top: 1rem;;">
     <span style="font-weight: bold;">สินค้าที่เปิดขายออกไปไม่เกิน 7 วัน (นับแต่วันที่ได้รับสินค้า) และลูกค้า มีความประสงค์ ในการขอคืนสินค้า โดยสินค้าไม่เสีย / ลูกค้าขอยกเลิก / สั่งสินค้าผิด แบ่งออกเป็น 2 กรณี</span><br>
     1. กรณีสภาพสินค้าสมบูรณ์ อุปกรณ์ครบถ้วนตามที่เปิดขายออกไปทุกประการ รวมถึงกล่องอุปกรณ์ต้องไม่มีร่องรอยความเสียหาย ในกรณีที่ มีการคืนสินค้า แบบขอคืนเงิน ทางบริษัทยินดีคืนเงินเต็มจำนวน และไม่หักค่าธรรมเนียมการโอน <br>

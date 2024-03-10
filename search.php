@@ -167,7 +167,7 @@ session_start();
             ?>
                 <div style="margin-bottom: 1rem; padding-top:2rem;">
                     <span style="color:#021b39; font-weight:500;">ทั้งหมด &nbsp;<?php echo $total; ?>&nbsp; รายการ &nbsp;|&nbsp;</span>
-                    <span style="color:#021b39; font-weight:500;">จำนวน &nbsp;<?php echo round($total / 12); ?> &nbsp;หน้า &nbsp;|&nbsp;</span>
+                    <span style="color:#021b39; font-weight:500;">จำนวน &nbsp;<?php echo ceil($total / 12); ?> &nbsp;หน้า &nbsp;|&nbsp;</span>
                     <span style="color:#021b39; font-weight:500;">หน้าละ&nbsp; 12 &nbsp;รายการ</span>
                 </div>
                 <div>
@@ -210,20 +210,20 @@ session_start();
                         if ($previous > 0) {
                         ?>
                             <li class="page-item">
-                                <a class="page-link" href="manage_member.php?page=<?php echo $previous; ?>">Previous</a>
+                                <a class="page-link" href="search.php?page=<?php echo $previous; ?>">Previous</a>
                             </li>
                         <?php
                         } else {
                             $previous = 1;
                         ?>
                             <li class="page-item disabled" aria-disabled="true">
-                                <a class="page-link" href="manage_member.php?page=<?php $previous; ?>">Previous</a>
+                                <a class="page-link" href="search.php?page=<?php $previous; ?>">Previous</a>
                             </li>
                         <?php
                         }
                         ?>
                         <?php
-                        $sql_total = $conn->query("select * from member");
+                        $sql_total = $conn->query("select * from product");
                         $data_count = $sql_total->num_rows;
                         $row = ceil($data_count / $perpage);
                         for ($i = 1; $i <= $row; $i++) {
@@ -233,7 +233,7 @@ session_start();
                             <?php
                             } else {
                             ?>
-                                <li class="page-item"><a class="page-link" href="manage_member.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                <li class="page-item"><a class="page-link" href="search.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
                             <?php
                             }
                             ?>
@@ -241,7 +241,7 @@ session_start();
                         if ($page < $row) {
                         ?>
                             <li class="page-item">
-                                <a class="page-link" href="manage_member.php?page=<?php echo $next = $page + 1; ?>">Next</a>
+                                <a class="page-link" href="search.php?page=<?php echo $next = $page + 1; ?>">Next</a>
                             </li>
                         <?php
                         } else {

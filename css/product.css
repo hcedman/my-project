@@ -1,0 +1,45 @@
+#container {
+    background-color: white;
+    margin-top: 8px;
+    min-height: 75vh;
+}
+#box_image {
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+#box_name {
+    font-size: larger;
+    font-weight: bolder;
+}
+#box_price {
+    font-weight:500;
+    margin-left: 15px;
+}
+#span_price {
+    font-size: xx-large;
+    font-weight:500;
+    color: maroon;
+}
+#box_delivery,
+#box_cart {
+    font-size: medium;
+    margin-left: 15px;
+}
+#box_quantity {
+    width: 170px;
+    padding-left: 0px;
+}
+#btn_cart {
+    font-weight: bolder;
+}
+#box_detail {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+}
+#span_detail {
+    padding-left: 2rem;
+}
+#box_flex {
+    padding-right: 2rem;
+}

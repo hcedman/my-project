@@ -55,7 +55,8 @@ include 'connect.php';
             display: grid;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight:500;
+            color:darkred;
         }
 
         #col4,
@@ -64,7 +65,8 @@ include 'connect.php';
             display: flex;
             justify-content: center;
             align-items: center;
-            font-weight: bold;
+            font-weight:500;
+            color:darkred;
         }
 
         #col7,
@@ -110,8 +112,8 @@ include 'connect.php';
     ?>
     <form action="checkout.php" method="POST" enctype="multipart/form-data">
         <div class="container-fluid container-lg" id="container_cart">
-            <div style="min-height: 55vh ;">
-                <h3 style="margin-left:2rem ;">รายการสินค้าในรถเข็น</h3>
+            <div style="min-height: 55vh ; padding-top:2rem; padding-bottom: 2rem;">
+                <h3 style="margin-left:2rem ; text-align:center;">รายการสินค้าในรถเข็น</h3>
                 <div class="row" id="cart_box">
                     <div class="col-2" style="font-weight:bold ;">สินค้า</div>
                     <div class="col"></div>
@@ -139,7 +141,7 @@ include 'connect.php';
                         <div class="row" id="cart_list">
                             <input type="hidden" name="cart_id[]" value="<?php echo $data_cart['cart_id']; ?>">
                             <div class="col-2"><img id="cart_img" src="upload/<?php echo $data_picture['picture_name']; ?>" alt=""></div>
-                            <div class="col" style="font-weight:bold ;"><?php echo $data_list_cart['product_name']; ?></div>
+                            <div class="col" style="font-weight:500 ;"><?php echo $data_list_cart['product_name']; ?></div>
                             <div class="col-2" id="col3"><?php echo "&#3647;" . number_format($data_list_cart['product_price']); ?>
                                 <span id="delivery" style="font-size: small; color: dimgrey;">ค่าจัดส่ง&nbsp;<?php echo $data_list_cart['product_delivery']; ?></span>
                             </div>
@@ -160,7 +162,7 @@ include 'connect.php';
                 </div>
                 <div class="col" id="col9">รวมค่าจัดส่ง&nbsp;&nbsp;&nbsp;&nbsp;<?php echo "&#3647;" . number_format($total_delivery); ?></div>
                 <div class="col" id="col10">ยอดคำสั่งซื้อทั้งหมด&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight:bolder; font-size:larger; color:red"><?php echo "&#3647;" . number_format($last_total); ?></span></div>
-                <div class="col" id="col11"><button class="btn btn-danger" type="submit" name="btn_buy" style="width: 10rem;">สั่งซื้อสินค้า</button></div>
+                <div class="col" id="col11"><button class="btn btn-danger" type="submit" name="btn_buy" style="width: 10rem; margin-bottom: 2rem;">สั่งซื้อสินค้า</button></div>
 
             </div>
         <?php

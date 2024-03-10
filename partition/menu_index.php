@@ -16,18 +16,18 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="#">โน็ตบุ๊ค</a>
               <ul class="submenu dropdown-menu">
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=apple">Apple</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=microsoft">Microsoft</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=asus">Asus</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=acer">Acer</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=lenovo">Lenovo</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=msi">msi</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=xiaomi">XIAOMI</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=dell">DELL</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=lg">LG</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=hp">HP</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=samsung">Samsung</a></li>
-                <li><a class="dropdown-item" href="search.php?search1=laptop&&search2=viewsonic">ViewSonic</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=apple">Apple</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=microsoft">Microsoft</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=asus">Asus</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=acer">Acer</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=lenovo">Lenovo</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=msi">msi</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=xiaomi">XIAOMI</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=dell">DELL</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=lg">LG</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=hp">HP</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=samsung">Samsung</a></li>
+                <li><a class="dropdown-item" href="search.php?search1=โน็ตบุ๊ค&&search2=viewsonic">ViewSonic</a></li>
               </ul>
             </li>
             <li><a class="dropdown-item" href="#">คอมพิวเตอร์ตั้งโต๊ะ</a>

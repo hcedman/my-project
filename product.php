@@ -23,59 +23,9 @@ include 'connect.php';
     <script src="node_modules/bootstrap-input-spinner/src/bootstrap-input-spinner.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="css/product.css">
     <script>
     </script>
-    <style>
-        #container {
-            background-color: white;
-            margin-top: 8px;
-            min-height: 75vh;
-        }
-        #box_image {
-            padding-left: 2rem;
-            padding-top: 2rem;
-        }
-        #box_name {
-            font-size: larger;
-            font-weight: bolder;
-        }
-        #box_price {
-            font-weight:500;
-            margin-left: 15px;
-        }
-        #span_price {
-            font-size: xx-large;
-            font-weight:500;
-            color: maroon;
-        }
-        #box_delivery,
-        #box_cart {
-            font-size: medium;
-            margin-left: 15px;
-        }
-        #box_quantity {
-            width: 170px;
-            padding-left: 0px;
-        }
-        #btn_cart {
-            font-weight: bolder;
-        }
-        #box_detail {
-            padding-left: 2rem;
-            padding-right: 2rem;
-            padding-bottom: 2rem;
-        }
-        #span_detail {
-            padding-left: 2rem;
-        }
-        #box_flex {
-            padding-right: 2rem;
-        }
-        #product_img {
-            height: 400px;
-            width: 400px;
-        }
-    </style>
     <title>Benz Online</title>
 </head>
 
@@ -95,52 +45,51 @@ include 'connect.php';
         ?>
         <div class="container-fluid container-lg" id="container">
             <div class="row">
-                <div class="col-lg-6" id="box_image">
+                <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-5 col-xl-5" id="box_image" style="display: flex; flex-wrap:wrap; padding-right:1rem;">
                     <?php
                     $product_id = $_GET['id'];
                     $sql_image = $conn->query("select * from picture where product_id = $product_id");
                     $count_pic = $sql_image->num_rows;
                     $picture_name = array();
                     ?>
-                    <div class="container">
-                        <div class="albery-container">
-                            <div class="albery-wrapper">
-                                <?php while ($data_image = $sql_image->fetch_assoc()) { ?>
-                                    <div class="albery-item">
-                                        <img style="width:100%; height:auto;" src="upload/<?php echo $data_image['picture_name'] ?>" alt="">
-                                    </div>
-                                <?php $picture_name[] = $data_image['picture_name'];
-                                } ?>
-                            </div>
-                            <div class="move-right">
-                                <a href="#" id="rightArrow"></a>
-                            </div>
-                            <div class="move-left">
-                                <a href="#" id="leftArrow"></a>
-                            </div>
+                    <div class="albery-container" style="margin-bottom:0.5rem;">
+                        <div class="albery-wrapper">
+                            <?php while ($data_image = $sql_image->fetch_assoc()) { ?>
+                                <div class="albery-item">
+                                    <img style="width:100%; height:auto;" src="upload/<?php echo $data_image['picture_name'] ?>" alt="">
+                                </div>
+                            <?php $picture_name[] = $data_image['picture_name'];
+                            } ?>
                         </div>
-                        <div class="pagination-container">
-                            <div class="pagination-wrapper">
-                                <?php
-                                for ($i = 0; $i < $count_pic; $i++) { ?>
-                                    <div class="pagination-item" data-item="<?php echo $i + 1; ?>">
-                                        <img style="width:100px; height:100px" src="upload/<?php echo $picture_name[$i]; ?>" alt="">
-                                    </div>
-                                <?php
-                                }
-                                ?>
-                            </div>
+                        <div class="move-right">
+                            <a href="#" id="rightArrow"></a>
+                        </div>
+                        <div class="move-left">
+                            <a href="#" id="leftArrow"></a>
                         </div>
                     </div>
+                    <div class="pagination-container">
+                        <div class="pagination-wrapper">
+                            <?php
+                            for ($i = 0; $i < $count_pic; $i++) { ?>
+                                <div class="pagination-item" data-item="<?php echo $i + 1; ?>">
+                                    <img style="width:100%;" src="upload/<?php echo $picture_name[$i]; ?>" alt="">
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+
                     <script src="js/albery.js"></script>
                     <script>
                         $(".albery-container").albery({
                             speed: 500,
-                            imgWidth: 500,
+                            imgWidth: 400,
                         });
                     </script>
                 </div>
-                <div class="col-lg-6" id="box_flex">
+                <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" id="box_flex">
                     <div class="d-flex flex-column"><br>
                         <div class="p-2 me-2" id="box_name"><?php echo $data_product['product_name']; ?></div><br><br><br><br><br>
                         <div class="p-2 me-2 bg-light" id="box_price">ราคา&nbsp;&nbsp;&nbsp;
@@ -157,25 +106,25 @@ include 'connect.php';
                     </div>
                 </div>
             </div>
-            <div class="row bg-light" style="margin:10px 2rem auto 2rem ;  padding-top:1rem;">
+            <div class="row bg-light" style="margin:10px 1rem auto  ;  padding-top:1rem;">
                 <span style="font-weight:bolder ;">ข้อมูลจำเพาะของสินค้า</span>
             </div>
             <div class="row" style="margin:1rem 2rem 1rem 2rem;">
-                <div class="col-2" style="margin-left: 1rem;">หมวดหมู่</div>
-                <div class="col"><a href="search.php?search=<?php echo $data_product['product_type']; ?>" style="text-decoration: none;"><?php echo $data_product['product_type']; ?></a></div>
+                <div class="col-4 col-md-3 col-lg-2" style="margin-left: 1rem;">หมวดหมู่</div>
+                <div class="col-6 col-md-7 col-lg-8"><a href="search.php?search=<?php echo $data_product['product_type']; ?>" style="text-decoration: none; color:dodgerblue; font-weight:500;"><?php echo $data_product['product_type']; ?></a></div>
             </div>
             <div class="row" style="margin:1rem 2rem 1rem 2rem;">
-                <div class="col-2" style="margin-left: 1rem;">ยี่ห้อ</div>
-                <div class="col"><a href="search.php?search=<?php echo $data_product['product_brand']; ?>" style="text-decoration: none;"><?php echo $data_product['product_brand']; ?></a></div>
+                <div class="col-4 col-md-3 col-lg-2" style="margin-left: 1rem;">ยี่ห้อ</div>
+                <div class="col-6 col-md-7 col-lg-8"><a href="search.php?search=<?php echo $data_product['product_brand']; ?>" style="text-decoration: none; color:dodgerblue; font-weight:500;"><?php echo $data_product['product_brand']; ?></a></div>
             </div>
             <div class="row" style="margin:1rem 2rem 1rem 2rem;">
-                <div class="col-2" style="margin-left: 1rem;">จำนวน</div>
-                <div class="col"><?php echo $data_product['product_remain']; ?></div>
+                <div class="col-4 col-md-3 col-lg-2" style="margin-left: 1rem;">จำนวน</div>
+                <div class="col-6 col-md-3 col-lg-8"><?php echo $data_product['product_remain']; ?></div>
             </div>
-            <div class="row bg-light" style="margin:10px 2rem auto 2rem ;  padding-top:1rem;">
+            <div class="row bg-light" style="margin:10px 1rem auto ">
                 <span style="font-weight:bolder ;">รายละเอียดสินค้า</span>
             </div>
-            <div class="row" style="margin:1rem 2rem 1rem 2rem ; padding-bottom: 4rem;">
+            <div class="row" style="margin:1rem 2rem auto 2rem ; padding-bottom: 4rem;">
                 <span id="span_detail"><?php echo $data_product['product_detail']; ?></span>
             </div>
         </div>

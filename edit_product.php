@@ -48,6 +48,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     include 'partition/menu_index.php';
     include 'partition/menu_manage.php';
     include 'connect.php';
+    include 'function.php';
 
     $edit_product = $_GET['product_id'];
     if (isset($edit_product)) {
@@ -85,32 +86,62 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             $sql = "update product set product_name=?, product_type=?, product_detail=?, product_price=?, product_remain=?, product_delivery=?, product_brand=? where product_id = $edit_product";
             $stmt = $conn->prepare($sql);
             $stmt->execute($data);
-            foreach ($_FILES['upload']['tmp_name'] as $key => $value) {
-                $picture_name = $_FILES['upload']['name'][$key];
-                $type = strrchr($_FILES['upload']['name'][$key], ".");
-                $new_name = rand(0, microtime(true)) . $type;
-                if (move_uploaded_file($_FILES['upload']['tmp_name'][$key], "upload/" . $new_name)) {
-                    $sql_upload = "insert into picture (product_id, picture_name)values(?,?)";
-                    $data_upload = array($edit_product, $new_name);
-                    $stmt_upload = $conn->prepare($sql_upload);
-                    $stmt_upload->execute($data_upload);
-                    if ($stmt_upload == true) {
-                        echo "<script>alertInto('success','แก้ไขข้อมูลเรียบร้อย','manage_product.php')</script>";
+            if (!empty($_FILES['upload']['tmp_name'][0])) {
+                foreach ($_FILES['upload']['tmp_name'] as $key => $value) {
+                    $file_tmp = $_FILES['upload']['tmp_name'][$key];
+                    $file_name = $_FILES['upload']['name'][$key];
+                    // $type = strrchr($_FILES['upload']['name'][$key], ".");
+                    // $new_name = rand(0, microtime(true)) . $type;
+                    if ($full_name =  image_resize($file_tmp, $file_name)) {
+                        $sql_upload = "insert into picture (product_id, picture_name)values(?,?)";
+                        $stmt_upload = $conn->prepare($sql_upload);
+                        $stmt_upload->bind_param('is', $edit_product, $full_name);
+                        $stmt_upload->execute();
+                        if ($stmt_upload == true) {
+                            echo "<script>alertInto('success','แก้ไขข้อมูลเรียบร้อย','manage_product.php')</script>";
+                        } else {
+
+                            echo "<script>alert('error','บันทึกข้อมูลผิดพลาด')</script>";
+                        }
                     } else {
 
-                        echo "<script>alert('error','บันทึกข้อมูลผิดพลาด')</script>";
+                        echo "<script>alertInto('success','แก้ไขข้อมูลเรียบร้อย','manage_product.php')</script>";
                     }
-                } else {
-
-                    echo "<script>alertInto('success','แก้ไขข้อมูลเรียบร้อย','manage_product.php')</script>";
                 }
+            }else{
+                echo "<script>alertInto('success','แก้ไขข้อมูลเรียบร้อย','manage_product.php')</script>";
             }
+            // echo $check_image;
+            // echo count($check_image);
+            // echo print_r($check_image);
+
+            // foreach ($_FILES['upload']['tmp_name'] as $key => $value) {
+            //     $file_tmp = $_FILES['upload']['tmp_name'][$key];
+            //     $file_name = $_FILES['upload']['name'][$key];
+            //     // $type = strrchr($_FILES['upload']['name'][$key], ".");
+            //     // $new_name = rand(0, microtime(true)) . $type;
+            //     if ($full_name =  image_resize($file_tmp, $file_name)) {
+            //         $sql_upload = "insert into picture (product_id, picture_name)values(?,?)";
+            //         $stmt_upload = $conn->prepare($sql_upload);
+            //         $stmt_upload->bind_param('is', $edit_product, $full_name);
+            //         $stmt_upload->execute();
+            //         if ($stmt_upload == true) {
+            //             echo "<script>alertInto('success','แก้ไขข้อมูลเรียบร้อย','manage_product.php')</script>";
+            //         } else {
+
+            //             echo "<script>alert('error','บันทึกข้อมูลผิดพลาด')</script>";
+            //         }
+            //     } else {
+
+            //         echo "<script>alertInto('success','แก้ไขข้อมูลเรียบร้อย','manage_product.php')</script>";
+            //     }
+            // }
         }
     }
     ?>
     <form action="" method="POST" enctype="multipart/form-data">
         <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding-top:3rem; ">
-        <h3 style="font-weight:bold; color:#021b39; text-align:center;">แก้ไขข้อมูลสินค้า</h3>
+            <h3 style="font-weight:bold; color:#021b39; text-align:center;">แก้ไขข้อมูลสินค้า</h3>
             <div class="row" style="padding-left:5rem; margin-top:2rem;">
                 <div class="col-lg-12" style="margin-top: 15px; margin-bottom: 10px;" id="box1">
                     <label for="product_name" class="form-label">ชื่อสินค้า</label>
@@ -120,21 +151,27 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                     <label for="product_type">ประเภทสินค้า</label>
                     <select class="form-select" name="product_type" id="product_type" style="width:100%;">
                         <option value="<?php echo $stmt_edit_product['product_type']; ?>"><?php echo $stmt_edit_product['product_type']; ?></option>
-                        <option value="Monitor">Monitor</option>
-                        <option value="CPU">CPU</option>
-                        <option value="Mouse">Mouse</option>
-                        <option value="Keyboad">Keyboad</option>
+                        <option value="โน๊ตบุ๊ค">โน๊ตบุ๊ค</option>
+                        <option value="คอมพิวเตอร์ตั้งโต๊ะ">คอมพิวเตอร์ตั้งโต๊ะ</option>
+                        <option value="จอคอมพิวเตอร์">จอคอมพิวเตอร์</option>
                     </select>
                 </div>
                 <div class="col-lg-5 col-sm-5" id="box9" style="margin-right:0%; padding-right:0% ">
                     <label for="product_brand">ยี่ห้อ</label>
                     <select class="form-select" name="product_brand" id="product_brand" style="width:100%;">
                         <option value="<?php echo $stmt_edit_product['product_brand']; ?>"><?php echo $stmt_edit_product['product_brand']; ?></option>
-                        <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
                         <option value="Acer">Acer</option>
-                        <option value="Lenovo">Lenovo</option>
-                        <option value="ASUS">ASUS</option>
+                        <option value="Dell">Dell</option>
                         <option value="HP">HP</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="LG">LG</option>
+                        <option value="Microsoft">Microsoft</option>
+                        <option value="MSI">MSI</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="ViewSonic">ViewSonic</option>
+                        <option value="Xiaomi">Xiaomi</option>
+                    </select>
                     </select>
                 </div>
                 <div class="col-lg-12" id="box3" style="margin-bottom: 10px;">
@@ -181,7 +218,8 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                             <div class="col-lg-2" id="picture_src"><img style="height: 5rem; width:5rem;" src="upload/<?php echo $stmt_edit_picture['picture_name']; ?>" alt=""></div>
                             <div class="col-lg-2" id="picture_btn"><button class="btn btn-danger">
                                     <a href="edit_product.php?picture_id=<?php echo $stmt_edit_picture['picture_id']; ?>&&product_id=<?php echo $stmt_edit_picture['product_id']; ?>" style="text-decoration: none; color:white;">
-                                        <i class="bi bi-trash-fill"></i>ลบ</a></button></div>
+                                        <i class="bi bi-trash-fill"></i>ลบ</a></button>
+                            </div>
                         </div>
                     </div>
                 <?php

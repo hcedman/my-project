@@ -45,7 +45,10 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
         #product_tap1, #product_tap2, #product_tap3, #product_tap4{
             color: #566573;
             font-weight:500;
-            
+        }
+        #nav_tab{
+            display: flex;
+            justify-content: center;
         }
     </style>
 
@@ -60,7 +63,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding: 3rem; ">
         <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">จัดการข้อมูลสินค้า</h3>
         <div style="margin: 3rem auto 2rem ">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs" id="nav_tab">
                 <li class="nav-item">
                     <a class="nav-link active" id="product_tap1" aria-current="page" href="manage_product.php">สินค้าทั้งหมด</a>
                 </li>

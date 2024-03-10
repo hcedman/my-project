@@ -27,28 +27,24 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
         #linkp1 {
             color: white;
             text-decoration: none;
-            /* font-weight: bold; */
         }
 
         .page-item.active .page-link {
             background-color: #021b39;
             border: #021b39;
-            /* font-weight: bold; */
         }
 
         .pagination>li>a {
             color: #021b39;
-            /* font-weight: bold; */
         }
-        td{
+
+        td {
             vertical-align: middle;
-            /* font-weight: bold; */
         }
-        th{
-            color:gray;
-            font-size:medium;
-            /* font-weight:bold; */
-  
+
+        th {
+            color: gray;
+            font-size: medium;
         }
     </style>
 
@@ -61,7 +57,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     include 'partition/menu_manage.php'; ?>
 
     <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding: 3rem; min-height: 70vh ;">
-    <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">จัดการข้อมูลลูกค้า</h3>
+        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">จัดการข้อมูลลูกค้า</h3>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -84,16 +80,20 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                 }
                 $perpage = 10;
                 $count = ($page - 1) * $perpage;
+                $user_id = $_SESSION['user_id'];
                 $sql = $conn->query("select * from member limit $count, $perpage");
                 if (isset($_GET['member_id'])) {
                     $delete_id = $_GET['member_id'];
                     $sql_delete = $conn->query("delete from member where member_id=$delete_id");
                     if ($sql_delete == true) {
-                        $link_finished = "manage_member.php?page=" . $page;
-                        echo "<script>alertUpdate('success','ดำเนินการลบสินค้าเรียบร้อย','" . $link_finished . "')</script>";
+                        if ($user_id == $delete_id) {
+                            echo "<script>alertUpdate('success','ดำเนินการข้อมูลสมาชิกเรียบร้อย','" . "logout.php" . "')</script>";
+                        } else {
+                            $link_finished = "manage_member.php?page=" . $page;
+                            echo "<script>alertUpdate('success','ดำเนินการข้อมูลสมาชิกเรียบร้อย','" . $link_finished . "')</script>";
+                        }
                     }
                 }
-
                 while ($data = $sql->fetch_assoc()) {
                     if ($data['member_level'] == 0) {
                         $level = "member";
@@ -102,7 +102,6 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                     } else {
                         $level = "admin";
                     }
-
                 ?>
                     <tr>
                         <td style="text-align:center;"><span class="badge" style="background-color: #021b39; font-size:small;"><?php echo $data['member_id']; ?></span></td>
@@ -178,13 +177,13 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     </div>
     <script language="javascript">
         const badge = document.querySelectorAll('#badge_status');
-        badge.forEach(newBadge =>{
+        badge.forEach(newBadge => {
             let value = newBadge.textContent;
-            if(value == 'admin'){
+            if (value == 'admin') {
                 newBadge.className = "badge bg-danger";
-            }else if(value == 'member'){
+            } else if (value == 'member') {
                 newBadge.className = "badge bg-secondary";
-            }else{
+            } else {
                 newBadge.className = "badge bg-warning";
             }
         })

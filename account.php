@@ -58,40 +58,42 @@ if (!isset($_SESSION['user_id'])) {
     }
     ?>
     <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding: 3rem; min-height: 60vh ;">
-        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem;">จัดการข้อมูลส่วนตัว</h3>
+        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:3rem; text-align:center;">จัดการข้อมูลส่วนตัว</h3>
         <form action="" method="post">
-            <div class="row" style="padding-left: 2rem; margin-bottom:1rem;">
-                <div class="col-lg-2" style="text-align: right;">บัญชีผู้ใช้</div>
+           <div>
+           <div class="row" style="padding-left: 2rem; margin-bottom:1rem;">
+                <div class="col-lg-4" style="text-align: right;">บัญชีผู้ใช้</div>
                 <div class="col-lg-5"><?php echo $data_member['member_email']; ?></div>
             </div>
             <div class="row" style="padding-left: 2rem; margin-bottom:1rem;">
-                <div class="col-lg-2 col-sm-1" style="text-align: right;">ชื่อ</div>
+                <div class="col-lg-4 col-sm-1" style="text-align: right;">ชื่อ</div>
                 <div class="col-lg-5"><input type="text" class="form-control" name="fname" value="<?php echo $data_member['member_firstname']; ?>"></div>
             </div>
             <div class="row" style="padding-left: 2rem; margin-bottom:1rem;">
-                <div class="col-lg-2" style="text-align: right;">นามสกุล</div>
+                <div class="col-lg-4" style="text-align: right;">นามสกุล</div>
                 <div class="col-lg-5"><input type="text" class="form-control" name="lname" value="<?php echo $data_member['member_lastname']; ?>"></div>
             </div>
             <div class="row" style="padding-left: 2rem; margin-bottom:1rem;">
-                <div class="col-lg-2" style="text-align: right;">เบอร์โทรศัพท์</div>
+                <div class="col-lg-4" style="text-align: right;">เบอร์โทรศัพท์</div>
                 <div class="col-lg-5"><input type="text" class="form-control" name="phone" value="<?php echo $data_member['member_phone']; ?>"></div>
             </div>
             <div class="row" style="padding-left: 2rem; margin-bottom:1rem;">
-                <div class="col-lg-2" style="text-align: right;">ที่อยู่</div>
+                <div class="col-lg-4" style="text-align: right;">ที่อยู่</div>
                 <div class="col-lg-5"><textarea name="address" class="form-control" id="" cols="30" rows="5"><?php echo $data_member['member_address']; ?></textarea></div>
             </div>
             <div class="row" style="padding-left: 2rem; margin-bottom:1rem;">
-                <div class="col-lg-2" style="text-align: right;">สถานะผู้ใช้</div>
+                <div class="col-lg-4" style="text-align: right;">สถานะผู้ใช้</div>
                 <div class="col-lg-5"><?php echo $level; ?></div>
             </div>
             <div class="row" style="padding-left: 2rem; margin-bottom:1rem;">
-                <div class="col-lg-2" style="text-align: right;">เปลี่ยนรหัสผ่าน</div>
+                <div class="col-lg-4" style="text-align: right;">เปลี่ยนรหัสผ่าน</div>
                 <div class="col-lg-5"><input type="password" class="form-control" name="password" value="<?php echo $data_member['member_password']; ?>"></div>
             </div>
             <div class="row" style="padding-left: 2rem; margin-bottom:1rem;">
-                <div class="col-lg-2" style="text-align: right;"></div>
+                <div class="col-lg-4" style="text-align: right;"></div>
                 <div class="col-lg-2"><input type="submit" name="btn_submit" class="btn btn-success" value="บันทึกข้อมูล"></div>
             </div>
+           </div>
         </form>
     </div>
     <div class="container-fluid container-lg bg-white" style="padding:1rem 0rem 3rem 4rem ;">

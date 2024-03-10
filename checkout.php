@@ -17,6 +17,38 @@ include 'connect.php';
     <script src="script.js"></script>
     <script src="node_modules/bootstrap-input-spinner/src/bootstrap-input-spinner.js"></script>
     <script>
+        $(document).ready(function(){
+            $('#edit_link').click(function(){
+                $('#span_address').attr('hidden', true);
+                $('#input_address').removeAttr('hidden');
+                $('#edit_link').attr('hidden',true);
+                $('#save_link').removeAttr('hidden');
+            });
+            $('#save_link').click(function(event){
+                event.preventDefault();
+                var address = $('#address_data').val().trim();
+                var id = $('#hide_id').text();
+                var data = {
+                    'address': address,
+                    'user_id': id
+                };
+                $.ajax({
+                    url: 'function.php',
+                    type: 'get',
+                    data: data,
+                    success: function(result){
+                        if(result == '1'){
+                            console.log(result);
+                            
+                        }else{
+                            console.log(result);
+
+                        }
+                    }
+                });
+                location.reload();
+            });
+        })
     </script>
     <style>
     </style>
@@ -47,19 +79,25 @@ include 'connect.php';
     }
     $sql_member = $conn->query("select * from member where member_id = $member_id");
     $data_member = $sql_member->fetch_array();
+    $check_address = $data_member['member_address'];
     ?>
     <form action="place_order.php" method="post">
         <div class="container-fluid container-lg">
             <div style="background-color:white ; margin-top:8px; margin-bottom:8px; padding:2rem; border-top:5px solid steelblue;">
-                <h3 style="margin-bottom:2rem; font-weight:bolder; color:#021b39;">ทำการสั่งซื้อ</h3>
-                <h5 style="font-weight:bold ;"><i class="bi bi-geo-alt-fill"></i>&nbsp;&nbsp;ที่อยู่ในการจัดส่ง </h5>
-                <span style="margin-left:2rem; font-weight:bold;"><?php echo $data_member['member_firstname'] . "&nbsp;&nbsp;" . $data_member['member_lastname'] . "&nbsp(" . $data_member['member_phone'] . ")"; ?></span>&nbsp;<a href="http://" style="text-decoration:none ; font-size:medium; font-weight:normal"><i class="bi bi-pencil-fill"></i>&nbsp; แก้ไข</a><br>
-                <span style="margin-left:2rem;"><?php echo $data_member['member_address']; ?></span>
+                <h3 style="margin-bottom:2rem; font-weight:bold; color:#021b39;">ทำการสั่งซื้อ</h3>
+                <h5 style="font-weight:600;"><i class="bi bi-geo-alt-fill"></i>&nbsp;&nbsp;ที่อยู่ในการจัดส่ง </h5>
+                <span style="margin-left:2rem; font-weight:400;"><?php echo $data_member['member_firstname'] . "&nbsp;&nbsp;" . $data_member['member_lastname'] . "&nbsp(" . $data_member['member_phone'] . ")"; ?>
+                </span>&nbsp;<span id="edit_link" style="color:dodgerblue;"><i class="bi bi-pencil-fill"></i>&nbsp; แก้ไข</span><button class="btn btn-success btn-sm" id="save_link" hidden>บันทึก</button><br>
+                <span style="margin-left:2rem;" id="span_address"><?php if($check_address != ""){ echo $check_address; }else{ echo "ไม่มีที่อยู่";} ?></span>
+                <div class="col-7" id="input_address" style="margin:1rem auto 2rem 1rem;" hidden>
+                    <textarea class="form-control" id="address_data"  rows="3"><?php echo $data_member['member_address']; ?></textarea>
+                </div>
+
             </div>
             <div style="background-color:white ; padding:2rem;">
-                <h5 style="font-weight:bold ;"><i class="bi bi-cart-fill"></i>&nbsp;&nbsp;สั่งซื้อสินค้าแล้ว</h5>
+                <h5 style="font-weight:600;"><i class="bi bi-cart-fill"></i>&nbsp;&nbsp;สั่งซื้อสินค้าแล้ว</h5>
                 <div class="row" style="margin-bottom:1rem ;">
-                    <div class="col-8" style="font-weight:bold; margin-top:1rem;">รายการสินค้า &nbsp;<a href="cart.php?id=<?php echo $member_id ?>" style="text-decoration:none ; font-size:medium; font-weight:normal"><i class="bi bi-pencil-fill"></i>&nbsp; แก้ไข</a></div>
+                    <div class="col-8" style="font-weight:bold; margin-top:1rem;">รายการสินค้า &nbsp;<a href="cart.php?id=<?php echo $member_id ?>" id="" style="text-decoration:none ; font-size:medium; font-weight:normal"><i class="bi bi-pencil-fill"></i>&nbsp; แก้ไข</a></div>
                     <div class="col-2" style="text-align:end ;  font-weight:bold; margin-top:1rem; ">ราคาต่อหน่วย</div>
                     <div class="col-1" style="text-align:center;font-weight:bold; margin-top:1rem; ">จำนวน</div>
                     <div class="col-1" style="text-align:end ;  font-weight:bold; margin-top:1rem; ">ราคารวม</div>
@@ -97,6 +135,7 @@ include 'connect.php';
                 </div>
                 <input type="hidden" name="order_total" value="<?php echo $total_delivery + $total; ?>">
                 <input type="hidden" name="order_delivery_price" value="<?php echo $total_delivery; ?>">
+                <span id="hide_id" hidden><?php echo $member_id; ?></span>
             </div>
             <div class="col-12" style="display:flex; justify-content:right; margin-top:8px; padding:2rem; background-color:white;">
                 <table style="width:15rem ; text-align:right">

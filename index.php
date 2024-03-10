@@ -31,6 +31,7 @@ session_start();
         }
 
         .card:hover img {
+            transition:0.5s ;
             transform: scale(1.1);
         }
 
@@ -69,6 +70,7 @@ session_start();
         }
 
         #brand_img:hover {
+            transition:0.4s;
             transform: scale(1.2);
             box-shadow: #2D3034;
             filter: drop-shadow(3px 2px 2px #53637F);
