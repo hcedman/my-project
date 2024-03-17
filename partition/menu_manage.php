@@ -24,6 +24,7 @@
     .navbar-light>button {
         background-color: #021b39;
     }
+
 </style>
 <?php
 include 'connect.php';
@@ -56,5 +57,6 @@ $_SESSION['count_rec'] = $count;
                                                             } ?></span></a>
         </button>
         <button onclick="develop()" class="btn btn-primary" style="margin:0.5rem 0.5rem auto 0.5rem;" name="btn_promotion" id="btn_promotion"><i class="bi bi-tags-fill"></i>&nbsp;จัดการโปรโมชัน</button>
+        <button class="btn btn-primary" id="btn_setting" style="margin:0.5rem 0.5rem auto 0.5rem;"><a href="config.php" id="link3"><i class="bi bi-gear-fill"></i>&nbsp; ตั้งค่าเว็บไซต์</a></button>
     </nav>
 </div>

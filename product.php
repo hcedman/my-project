@@ -1,6 +1,9 @@
 <?php
 session_start();
 include 'connect.php';
+if (isset($_SESSION['user_id'])) {
+    $enable_buy = 1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,7 +105,13 @@ include 'connect.php';
                                 <div class="p-2 m-2 ">มีสินค้าทั้งหมด&nbsp;<?php echo $data_product['product_remain']; ?>&nbsp;ชิ้น</div>
                             </div>
                         </div>
-                        <div class="p-2 me-2" id="box_cart"><button class="btn btn-danger btn-lg" id="btn_cart" name="btn_cart" data-id="<?php echo $data_product['product_id']; ?>">เพิ่มไปยังรถเข็น</button></div>
+                        <?php if (isset($enable_buy)) { ?>
+                            <div class="p-2 me-2" id="box_cart"><button class="btn btn-danger btn-lg" id="btn_cart" name="btn_cart" data-id="<?php echo $data_product['product_id']; ?>">เพิ่มไปยังรถเข็น</button></div>
+                        <?php } else { ?>
+                            <div class="p-2 me-2" id="box_cart"><button class="btn btn-danger btn-lg" id="btn_disable" onclick="noti()" name="btn_cart">เพิ่มไปยังรถเข็น</button></div>
+                        <?php } ?>
+
+
                     </div>
                 </div>
             </div>
@@ -128,6 +137,12 @@ include 'connect.php';
                 <span id="span_detail"><?php echo $data_product['product_detail']; ?></span>
             </div>
         </div>
+
+        <script>
+            function noti() {
+                alert("กรุณาเข้าสู่ระบบก่อนดำเนินการซื้อสินค้า");
+            }
+        </script>
     </form>
     <?php include 'partition/footer.php';  ?>
 </body>

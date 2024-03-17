@@ -70,18 +70,17 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
     $sql_request = $conn->query("select * from member where member_level = 1");
     $count_request = mysqli_num_rows($sql_request);
     $today = date("Y-m-d");
-    $sql_regis = $conn->query("select * from member where member_date = $today");
+    $sql_regis = $conn->query("select * from member where member_date = '$today'");
     $count_regis = mysqli_num_rows($sql_regis);
     $sql_count_order = $conn->query("select count(*) as total from orders");
     $data_count_order = $sql_count_order->fetch_assoc();
-    $sql_count_today = $conn->query("select count(*) as today from orders where order_date = $today");
+    $sql_count_today = $conn->query("select count(*) as today from orders where order_date = '$today'");
     $data_count_today = $sql_count_today->fetch_assoc();
     $sql_count_inprogress = $conn->query("select count(*) as inprogress from orders where order_status = 'inprogress'");
     $data_count_inprogress = $sql_count_inprogress->fetch_assoc();
     ?>
     <div class=" container-fluid container-lg bg-white" style="min-height:70vh; margin-top:8px; padding: 3rem;">
         <div class="container-fluid">
-            <!-- <h2 style="text-align: center; font-weight:bold; margin-bottom:3rem; color:slategrey;">จัดการข้อมูลร้านค้า</h2> -->
             <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">จัดการข้อมูลร้านค้า</h3>
             <div class="col-10" style="margin:auto auto 2rem;"  >
                 <h5 style="font-weight:500; text-align:left; color:slategrey;"><i class="bi bi-person-lines-fill"></i>&nbsp;ข้อมูลผู้ใช้</h5>

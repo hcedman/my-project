@@ -31,7 +31,7 @@ session_start();
         }
 
         .card:hover img {
-            transition:0.5s ;
+            transition: 0.5s;
             transform: scale(1.1);
         }
 
@@ -70,7 +70,7 @@ session_start();
         }
 
         #brand_img:hover {
-            transition:0.4s;
+            transition: 0.4s;
             transform: scale(1.2);
             box-shadow: #2D3034;
             filter: drop-shadow(3px 2px 2px #53637F);
@@ -126,18 +126,18 @@ session_start();
     </div>
     <div class="container-lg bg bg-white" style="padding: 0%;">
         <div class="row" id="brand_box">
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand1"><a href="search.php?search=apple" target="_blank"><img id="brand_img" src="img/brand/apple.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand2"><a href="search.php?search=microsoft" target="_blank"><img id="brand_img" src="img/brand/microsoft.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand3"><a href="search.php?search=asus" target="_blank"><img id="brand_img" src="img/brand/asus.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand4"><a href="search.php?search=acer" target="_blank"><img id="brand_img" src="img/brand/acer.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand5"><a href="search.php?search=lenovo" target="_blank"><img id="brand_img" src="img/brand/lenovo.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand6"><a href="search.php?search=msi" target="_blank"><img id="brand_img" src="img/brand/msi.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand7"><a href="search.php?search=xiaomi" target="_blank"><img id="brand_img" src="img/brand/xiaomi.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand8"><a href="search.php?search=dell" target="_blank"><img id="brand_img" src="img/brand/dell.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand9"><a href="search.php?search=lg" target="_blank"><img id="brand_img" src="img/brand/lg.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand10"><a href="search.php?search=hp" target="_blank"><img id="brand_img" src="img/brand/hp.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand11"><a href="search.php?search=samsung" target="_blank"><img id="brand_img" src="img/brand/samsung.jpg" alt=""></a></div>
-            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand12"><a href="search.php?search=viewsonic" target="_blank"><img id="brand_img" src="img/brand/viewsonic.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand1"><a href="search.php?search1=apple" target="_blank"><img id="brand_img" src="img/brand/apple.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand2"><a href="search.php?search1=microsoft" target="_blank"><img id="brand_img" src="img/brand/microsoft.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand3"><a href="search.php?search1=asus" target="_blank"><img id="brand_img" src="img/brand/asus.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand4"><a href="search.php?search1=acer" target="_blank"><img id="brand_img" src="img/brand/acer.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand5"><a href="search.php?search1=lenovo" target="_blank"><img id="brand_img" src="img/brand/lenovo.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand6"><a href="search.php?search1=msi" target="_blank"><img id="brand_img" src="img/brand/msi.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand7"><a href="search.php?search1=xiaomi" target="_blank"><img id="brand_img" src="img/brand/xiaomi.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand8"><a href="search.php?search1=dell" target="_blank"><img id="brand_img" src="img/brand/dell.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand9"><a href="search.php?search1=lg" target="_blank"><img id="brand_img" src="img/brand/lg.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand10"><a href="search.php?search1=hp" target="_blank"><img id="brand_img" src="img/brand/hp.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand11"><a href="search.php?search1=samsung" target="_blank"><img id="brand_img" src="img/brand/samsung.jpg" alt=""></a></div>
+            <div class="col-3 col-sm-4 col-md-3 col-lg-2 col-xl-2" id="brand12"><a href="search.php?search1=viewsonic" target="_blank"><img id="brand_img" src="img/brand/viewsonic.jpg" alt=""></a></div>
         </div>
     </div>
     <div class="container-lg bg-white">
@@ -150,7 +150,23 @@ session_start();
         <div class="row">
             <?php
             require 'connect.php';
-            $sql_product = $conn->query("select * from product order by product_remain desc limit 4");
+            $check_setting = $conn->query("select setting_value from setting where setting_id = 1");
+            $result_setting = $check_setting->fetch_array();
+            switch ($result_setting['setting_value']) {
+                case '1':
+                    $sql_value = "select * from product order by product_remain desc limit 4";
+                    break;
+                case '2':
+                    $sql_value = "select * from product order by product_remain asc limit 4";
+                    break;
+                case '3';
+                    $sql_value = "select * from product order by rand() limit 4";
+                    break;
+                default:
+                    $sql_value = "select * from product order by rand() limit 4";
+            }
+
+            $sql_product = $conn->query($sql_value);
             while ($data_product = $sql_product->fetch_assoc()) {
                 $product_id = $data_product['product_id'];
                 $sql_picture = $conn->query("select picture_name from picture where product_id = $product_id limit 1 ");

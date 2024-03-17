@@ -28,6 +28,14 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
             text-decoration: none;
             font-weight: bold;
         }
+        .page-item.active .page-link {
+            background-color: #021b39;
+            border: #021b39;
+        }
+        th {
+            color: gray;
+            font-size: medium;
+        }
     </style>
 
     <title>Benz Online</title>
@@ -36,14 +44,24 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
 <body>
     <?php include 'partition/header.php';
     include 'partition/menu_index.php';
-    include 'partition/menu_manage.php'; ?>
+    include 'partition/menu_manage.php'; 
+    $check_setting = $conn->query("select setting_value from setting where setting_id = 2");
+    $result_setting = $check_setting->fetch_array();
 
-    <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding: 3rem; min-height:60vh;">
-        <h3 style="font-weight:bold; margin-left:1rem; margin-bottom:2rem; color:#021b39; text-align:center;">คำขอสิทธิดูแลระบบ</h3>
+    if($result_setting['setting_value'] == 2){
+        $permission = '<i class="bi bi-check-circle-fill"></i>&nbsp;อนุญาติให้ผู้ใช้ขอสิทธ์ admin ได้โดยไม่ต้องรอการอนุมัติ';
+    }else{
+        $permission = '<i class="bi bi-exclamation-circle-fill"></i>&nbsp;ผู้ใช้ขอสิทธ์ admin ได้โดยต้องรอการอนุมัติก่อน';
+    }
+    ?>
+
+    <div class="container-fluid container-lg" style="background-color:white; margin-top:8px; padding: 1rem 3rem 3rem;  min-height: 70vh ;">
+   <span style="color:#021b39; font-weight:500; margin-right:3px;">สถานะ : </span><span style="color:goldenrod;"><?php echo $permission; ?></span>
+        <h3 style="font-weight:bold; margin:1rem auto 2rem; color:#021b39; text-align:center;">คำขอสิทธิดูแลระบบ</h3>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th style="text-align:center ;">รหัสสมาชิก</th>
+                    <th style="text-align:center ;"></th>
                     <th>ชื่อ</th>
                     <th>นามสกุล</th>
                     <th style="text-align:right">วันที่ร้องขอ</th>
@@ -62,10 +80,15 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                 // }
                 if (isset($_GET['member_id']) && isset($_GET['action'])) {
                     $action_member = $_GET['member_id'];
-                    $action_resual = $_GET['action'];
-                    $sql_request = $conn->query("update member set member_level = $action_resual where member_id = $action_member");
+                    $action_result = $_GET['action'];
+                    $sql_request = $conn->query("update member set member_level = $action_result where member_id = $action_member");
                     if ($sql_request) {
-                        echo "<script>popup('success','ดำเนินการเรียบร้อย','manage_request.php')</script>";
+                        if($action_result == 2){
+                            echo "<script>alertInto('success','ดำเนินการเพิ่มสิทธ์ admin เรียบร้อย','manage_request.php')</script>";
+                        }else{
+                            echo "<script>alertInto('success','ดำเนินการปฏิเสธเรียบร้อย','manage_request.php')</script>";
+                        }
+                        
                     }
                 }
                 if (isset($_GET['page'])) {
@@ -79,14 +102,14 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                 while ($data = $sql->fetch_assoc()) {
                 ?>
                     <tr>
-                        <td style="text-align:center ;"><?php echo $data['member_id']; ?></td>
+                        <td style="text-align:center ;"><span class="badge" style="background-color: #021b39; font-size:small;"><?php echo $data['member_id']; ?></span></td>
                         <td><a href="member.php?id=<?php echo $data['member_id'];  ?>" target="_blank" style="text-decoration:none; color:black;"><?php echo $data['member_firstname']; ?></a></td>
                         <td><?php echo $data['member_lastname']; ?></td>
 
                         <td style="text-align:right;"><?php echo $data['member_date']; ?></td>
                         <td align="center">
                             <div class="btn btn-group" style="padding:0%;">
-                                <button class="btn btn-success"><a href="manage_request.php?member_id=<?php echo $data['member_id']; ?>&&action=2" style="text-decoration:none; color:white;"><i class="bi bi-check-square-fill"></i></i>&nbsp;approve</a></button>
+                                <button class="btn btn-success"><a href="manage_request.php?member_id=<?php echo $data['member_id']; ?>&&action=2" style="text-decoration:none; color:white;"><i class="bi bi-check-square-fill"></i>&nbsp;approve</a></button>
                                 <button class="btn btn-danger"><a href="manage_request.php?member_id=<?php echo $data['member_id']; ?>&&action=0" style="text-decoration:none; color:white;"><i class="bi bi-x-square-fill"></i>&nbsp;reject</a></button>
                             </div>
                         </td>

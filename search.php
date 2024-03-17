@@ -33,7 +33,7 @@ session_start();
 
         .pagination>li>a {
             color: #021b39;
-            font-weight:500;
+            font-weight: 500;
         }
 
         #btn_buy {
@@ -42,18 +42,21 @@ session_start();
 
         .card-title {
             color: firebrick;
-            font-weight: 500;;
+            font-weight: 500;
+            ;
         }
 
         .card-text {
-            font-weight:400;
+            font-weight: 400;
             white-space: nowrap;
             overflow: hidden;
             text-decoration: none;
-            color: #2D3034 ;
+            color: #2D3034;
+            font-size: small;
         }
 
         .card:hover img {
+            transition: 0.4s;
             transform: scale(1.1);
         }
 
@@ -94,89 +97,67 @@ session_start();
         $page = 1;
         $count = 0;
     }
-    if (isset($_GET['search'])) {
-        $keyword = "%{$_GET['search']}%";
-        $check = $_GET['search'];
-        if (!empty($check)) {
-            $sql_search = "select * from product where (product_type like ?) or (product_id like ?) or (product_type like ?) or (product_brand like ?) or (product_name like ?) and product_status = 1 ";
-            $stmt_search = $conn->stmt_init();
-            $stmt_search->prepare($sql_search);
-            $stmt_search->bind_param('sssss', $keyword, $keyword, $keyword, $keyword, $keyword);
-            $stmt_search->execute();
-            $result_search = $stmt_search->get_result();
-            $total_s = $result_search->num_rows;
-        } else {
-            $sql_limit = "select * from product where product_status = 1  limit $count, $perpage";
-            $result_search = $conn->query($sql_limit);
-        }
-    } elseif (isset($_GET['search1']) && isset($_GET['search2'])) {
-        $keyword1 = "%{$_GET['search1']}%";
-        $keyword2 =  "%{$_GET['search2']}%";
-        $check = $_GET['search1'];
-        $check2 = $_GET['search2'];
-        if (!empty($check)) {
-            $sql_search = "select * from product where (product_type like ?) and (product_brand like ?) and product_status = 1  ";
-            $stmt_search = $conn->stmt_init();
-            $stmt_search->prepare($sql_search);
+
+    if (isset($_GET['search1'])) {
+        $check1 = $_GET['search1'];
+        if (empty($check1)) {
+            $stmt_search = $conn->prepare("select * from product where product_status = 1 limit $count, $perpage");
+            $stmt_total = $conn->prepare("select product_id from product where product_status = 1");
+        } elseif (isset($_GET['search2'])) {
+            $check2 = $_GET['search2'];
+            $keyword1 = "%{$_GET['search1']}%";
+            $keyword2 = "%{$_GET['search2']}%";
+            $stmt_search = $conn->prepare("select * from product where (product_type like ?) and (product_brand like ?) and product_status = 1 limit $count, $perpage");
+            $stmt_total = $conn->prepare("select product_id from product where (product_type like ?) and (product_brand like ?) and product_status = 1");
             $stmt_search->bind_param('ss', $keyword1, $keyword2);
-            $stmt_search->execute();
-            $result_search = $stmt_search->get_result();
-            $total_s = $result_search->num_rows;
+            $stmt_total->bind_param('ss', $keyword1, $keyword2);
         } else {
-            $sql_limit = "select * from product where product_status = 1  limit $count, $perpage";
-            $result_search = $conn->query($sql_limit);
+            $keyword1 = "%{$_GET['search1']}%";
+            $stmt_search = $conn->prepare("select * from product where (product_type like ?) or (product_id like ?) or (product_type like ?) or (product_detail like ?)  or (product_brand like ?) or (product_name like ?) and product_status = 1 limit $count, $perpage");
+            $stmt_total = $conn->prepare("select product_id from product where (product_type like ?) or (product_id like ?) or (product_type like ?) or (product_detail like ?)  or (product_brand like ?) or (product_name like ?) and product_status = 1");
+            $stmt_search->bind_param('ssssss', $keyword1, $keyword1, $keyword1, $keyword1, $keyword1, $keyword1);
+            $stmt_total->bind_param('ssssss', $keyword1, $keyword1, $keyword1, $keyword1, $keyword1, $keyword1);
         }
     } else {
-        $sql_limit = "select * from product where product_status = 1  limit $count, $perpage";
-        $result_search = $conn->query($sql_limit);
+        $stmt_search = $conn->prepare("select * from product where product_status = 1 limit $count, $perpage");
+        $stmt_total = $conn->prepare("select product_id from product where product_status = 1");
     }
-    $sql_count = "select * from product where product_status = 1 ";
-    $count_search = $conn->query($sql_count);
-    $total = $count_search->num_rows;
-    $navig = ceil($total / $perpage);
+    $stmt_search->execute();
+    $result_search = $stmt_search->get_result();
     ?>
+
     <form action="" method="get">
         <div class="container-fluid container-lg" id="box_result" style="padding-left: 2rem; padding-right:2rem;">
             <?php
-            if (!empty($check)) {
+            $stmt_total->execute();
+            $result_total = $stmt_total->get_result();
+            $total_query = $result_total->num_rows;
+            $row = ceil($total_query / $perpage);
+
+            if (!empty($check1)) {
                 if (!empty($check2)) {
             ?>
-                    <h6 style="font-weight:bold; text-align:center; margin-top:1rem;"><i class="bi bi-search">&nbsp;&nbsp;</i>ค้นหา&nbsp;&nbsp;<span style="color:darkred ;"><?php echo $check; ?></span>&nbsp;&nbsp;ยี่ห้อ&nbsp;&nbsp;<span style="color:darkred ;"><span style="color:darkred ;"><?php echo $check2; ?></span></h6>
+                    <h6 style="font-weight:500; text-align:center; margin-top:1rem;"><i class="bi bi-search">&nbsp;&nbsp;</i>ค้นหา&nbsp;&nbsp;
+                    <span style="color:darkred ;"><?php echo $check1; ?></span>&nbsp;&nbsp;ยี่ห้อ&nbsp;&nbsp;<span style="color:darkred ;"><?php echo $check2; ?></span></h6>
                 <?php
                 } else {
                 ?>
-                    <h6 style="font-weight:bold; text-align:center; margin-top:1rem;"><i class="bi bi-search">&nbsp;&nbsp;</i>ค้นหา&nbsp;&nbsp;'<span style="color:darkred ;"><?php echo $check; ?></span>'</h6>
-                <?php
+                    <h6 style="font-weight:500; text-align:center; margin-top:1rem;"><i class="bi bi-search">&nbsp;&nbsp;</i>ค้นหา&nbsp;&nbsp;'
+                    <span style="color:darkred ;"><?php echo $check1; ?></span>'</h6>
+            <?php
                 }
-                ?>
-                <div style="margin-bottom: 1rem; padding-top:2rem;">
-                    <span style="color:#021b39; font-weight:500;">ทั้งหมด &nbsp;<?php echo $total_s; ?> รายการ &nbsp;|&nbsp;</span>
-                    <span style="color:#021b39; font-weight: 500;">จำนวน <?php if ($tt = round($total_s / 12) <= 0) {
-                                                                                $total_search = 1;
-                                                                            } else {
-                                                                                $total_search = $tt;
-                                                                            }
-                                                                            echo $total_search; ?> หน้า &nbsp;|&nbsp;</span>
-                    <span style="color:#021b39; font-weight: 500;">หน้าละ 12 รายการ</span>
-                </div>
-                <div>
-                    <hr size=5>
-                </div>
-            <?php
-            } else {
-            ?>
-                <div style="margin-bottom: 1rem; padding-top:2rem;">
-                    <span style="color:#021b39; font-weight:500;">ทั้งหมด &nbsp;<?php echo $total; ?>&nbsp; รายการ &nbsp;|&nbsp;</span>
-                    <span style="color:#021b39; font-weight:500;">จำนวน &nbsp;<?php echo ceil($total / 12); ?> &nbsp;หน้า &nbsp;|&nbsp;</span>
-                    <span style="color:#021b39; font-weight:500;">หน้าละ&nbsp; 12 &nbsp;รายการ</span>
-                </div>
-                <div>
-                    <hr size=5>
-                </div>
-            <?php
             }
             ?>
-            <div style="min-height: 80vh ;">
+
+            <div style="margin-bottom: 1rem; padding-top:2rem;">
+                <span style="color:#021b39; font-weight:500;">ทั้งหมด &nbsp;<?php echo $total_query; ?> รายการ &nbsp;|&nbsp;</span>
+                <span style="color:#021b39; font-weight: 500;">จำนวน &nbsp;<?php echo ceil($total_query / 12); ?> &nbsp;หน้า &nbsp;|&nbsp;</span>
+                <span style="color:#021b39; font-weight: 500;">หน้าละ 12 รายการ</span>
+            </div>
+            <div>
+                <hr size=5>
+            </div>
+            <div style="min-height: 85vh ;">
                 <div class="row">
                     <?php
                     if ($result_search->num_rows > 0) {
@@ -190,10 +171,12 @@ session_start();
                                     $result_picture = $conn->query($sql_picture);
                                     $data_picture = $result_picture->fetch_assoc();
                                     ?>
-                                    <img style="height:12rem; width:12rem; display:block; margin-left:auto; margin-right:auto; " src="upload/<?php echo $data_picture['picture_name']; ?>" class="card-img" alt="" srcset="">
+                                    <a href="product.php?id=<?php echo $data['product_id']; ?>"><img style="height:12rem; width:12rem; display:block; margin-left:auto; margin-right:auto; " 
+                                    src="upload/<?php echo $data_picture['picture_name']; ?>" class="card-img" alt="" srcset=""></a>
                                     <div class="card-body">
                                         <h6 class="card-title">&#3647;<?php echo number_format($data['product_price']); ?></h6>
-                                        <p class="card-text"><a href="product.php?id=<?php echo $data['product_id']; ?>" target="_blank" id="product_link" style=" font-size:small;"><?php echo $data['product_name']; ?></a></p>
+                                        <p class="card-text"><a href="product.php?id=<?php echo $data['product_id']; ?>" target="_blank" id="product_link" style=" font-size:small;">
+                                        <?php echo $data['product_name']; ?></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -202,6 +185,19 @@ session_start();
                     ?>
                 </div><br>
             </div>
+            <?php
+            if (isset($check1)) {
+                if (empty($check1)) {
+                    $get_link = "";
+                } elseif (isset($check2)) {
+                    $get_link = "&search1=" . $check1 . "&search2=" . $check2;
+                } else {
+                    $get_link = "&search1=" . $check1;
+                }
+            } else {
+                $get_link = "";
+            }
+            ?>
             <div class="container-fluid container-lg bg-white" style="padding:1rem 0rem 2rem 0rem ;">
                 <nav aria-label="">
                     <ul class="pagination">
@@ -223,9 +219,7 @@ session_start();
                         }
                         ?>
                         <?php
-                        $sql_total = $conn->query("select * from product");
-                        $data_count = $sql_total->num_rows;
-                        $row = ceil($data_count / $perpage);
+
                         for ($i = 1; $i <= $row; $i++) {
                             if ($page == $i) {
                         ?>
@@ -233,7 +227,7 @@ session_start();
                             <?php
                             } else {
                             ?>
-                                <li class="page-item"><a class="page-link" href="search.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                <li class="page-item"><a class="page-link" href="search.php?page=<?php echo $i . $get_link; ?>"><?php echo $i; ?></a></li>
                             <?php
                             }
                             ?>

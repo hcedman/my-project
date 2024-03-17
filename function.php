@@ -88,6 +88,26 @@ function image_resize($file_tmp, $file_name)
     }
 }
 
+if (isset($_GET['typeConfig'])){
+    $data = $_GET['typeConfig'];
+    $sql_config = "update setting set setting_value = $data  where setting_id = 1";
+    $stmt_config = $conn->query($sql_config);
+    if($stmt_config == true){
+        echo "true";
+    }else{
+        echo "fale";
+    }
+}
 
+if(isset($_GET['permiConfig'])){
+    $data = $_GET['permiConfig'];
+    $sql_config = "update setting set setting_value = $data  where setting_id = 2";
+    $stmt_config = $conn->query($sql_config);
+    if($stmt_config == true){
+        echo "true";
+    }else{
+        echo "fale";
+    }
+}
 ?>
  

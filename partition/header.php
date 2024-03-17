@@ -2,6 +2,10 @@
 <script src="script.js"></script>
 <script>
     $(document).ready(function() {
+        var valueCart = $('#cart_count').text();
+        if (valueCart > 0) {
+            $('#cart_count').removeAttr('hidden');
+        }
         $("input[type='number']").inputSpinner()
         $('#btn_cart').click(function() {
             var id = $('#btn_cart').attr('data-id');
@@ -83,7 +87,7 @@
             <div class="col-12 col-sm-12 col-md-3 col-lg-2 col-xl-2 "><img src="img/logo.png" id="logo"></div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-8 col-xl-8" id="box_search">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="search" name="search" placeholder="ค้นหาสินค้า" value="">
+                    <input type="text" class="form-control" id="search" name="search1" placeholder="ค้นหาสินค้า" value="">
                     <button class="btn btn-outline-light " id="btn_search" type="submit" style="font-weight: 500;">ค้นหา</button>
                 </div>
             </div>
@@ -99,16 +103,26 @@
                 ?>
                     <span>
                         <a href="cart.php?id=<?php echo $member_id ?>" style="text-decoration:none; color:white;">
-                            <span class="badge rounded-pill bg-danger" style="font-size:x-small;" id="cart_count"><?php echo $_SESSION['cart']; ?></span>
+                            <span class="badge rounded-pill bg-danger" style="font-size:x-small;" id="cart_count" hidden><?php echo $_SESSION['cart']; ?></span>
                             <i class="bi bi-cart2"></i>
                             <i class="bi bi-three-dots-vertical"></i></a>
+
                         <?php
                         $sql_name = $conn->query("select member_firstname from member where member_id = $member_id");
                         $result_name = $sql_name->fetch_assoc();
                         ?>
                         <div class="dropdown" style="display:inline; padding:0%">
                             <button class="btn dropdown-toggle shadow-none" id="menu_top" data-bs-toggle="dropdown" aria-expanded="false" style="color:white ;">
-                                <i class="bi bi-person-fill"></i>&nbsp;<?php echo $result_name['member_firstname']; ?></button>
+                                <i class="bi bi-person-fill"></i>&nbsp;
+                                <?php
+                                if (mb_strlen($result_name['member_firstname']) > 9) {
+                                    $name_account = mb_substr($result_name['member_firstname'], 0, 9) . "..";
+                                } else {
+                                    $name_account = $result_name['member_firstname'];
+                                }
+                                echo  $name_account;
+                                ?>
+                            </button>
                             <ul class=" dropdown-menu" aria-labelledby="menu_top">
                                 <li><a href="account.php" class=" dropdown-item" style="font-weight: normal;">บัญชีของฉัน</a></li>
                                 <li><a href="purchase.php" class=" dropdown-item" style="font-weight: normal;">การซื้อของฉัน</a></li>

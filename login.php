@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (isset($_SESSION['user_id'])) {
+    header('location:index.php');
+    exit;
+}
 include 'connect.php';
 ?>
 <!DOCTYPE html>
@@ -141,10 +145,21 @@ include 'connect.php';
     <?php
     include 'partition/header.php';
     include 'partition/menu_index.php';
-    $z = 1;
+    $check_setting = $conn->query("select setting_value from setting where setting_id = 2");
+    $result_setting = $check_setting->fetch_array();
+    switch ($result_setting['setting_value']) {
+        case '1':
+            $permission = 1;
+            break;
+        case '2':
+            $permission = 2;
+            break;
+        default:
+            $permission = 1;
+    }
     if (isset($_POST['btn_register'])) {
         if (isset($_POST['input_status'])) {
-            $level = 2;
+            $level = $permission;
         } else {
             $level = 0;
         }
@@ -158,7 +173,7 @@ include 'connect.php';
         $stmt_register->execute($data);
         if ($stmt_register) {
             $sql_login = $conn->query("select * from member where member_email= '$email' and member_password= '$password' ");
-            $query_data = mysqli_fetch_assoc($sql_login);
+            $query_data = $sql_login->fetch_assoc();
             if ($query_data) {
                 $_SESSION['user_id'] = $query_data["member_id"];
                 $_SESSION['user_level'] = $query_data['member_level'];
@@ -206,21 +221,21 @@ include 'connect.php';
                     <div class="col-11">
                         <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
                             <label for="login_name" class="form-label">ชื่อ</label>
-                            <input type="text" class="form-control" id="login_name" placeholder="กรอกชื่อ" name="input_fname">
+                            <input type="text" class="form-control" id="login_name" placeholder="กรอกชื่อ" name="input_fname" maxlength="20">
                             <span id="check_firstname" hidden>0</span>
                         </div>
                     </div>
                     <div class="col-11">
                         <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
                             <label for="login_lastname" class="form-label">นามสกุล</label>
-                            <input type="text" class="form-control" id="login_lastname" placeholder="กรอกนามสกุล" name="input_lname">
+                            <input type="text" class="form-control" id="login_lastname" placeholder="กรอกนามสกุล" name="input_lname" maxlength="20">
                             <span id="check_lastname" hidden>0</span>
                         </div>
                     </div>
                     <div class="col-11">
                         <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
                             <label for="login_mail" class="form-label">อีเมลหรือชื่อผู้ใช้</label>
-                            <input type="text" class="form-control" id="login_mail" placeholder="กรอกอีเมล" name="input_email">
+                            <input type="text" class="form-control" id="login_mail" placeholder="กรอกอีเมล" name="input_email" maxlength="30">
                             <span hidden id="available" style="color:darkgreen; font-weight:400;">&#10004;สามารถใช้ e-mail นี้ได้</span>
                             <span hidden id="notAvailable" style="color:darkred;  font-weight:400;">&#10006;ไม่สามารถใช้ e-mail นี้ได้</span>
                             <span id="check_email" hidden>0</span>
@@ -229,7 +244,7 @@ include 'connect.php';
                     <div class="col-11">
                         <div style="margin-bottom: 15px; margin-top: 0px; padding-left:10%;">
                             <label for="login_pass" class="form-label">รหัสผ่าน</label>
-                            <input type="password" class="form-control" id="login_pass" placeholder="กรอกรหัสผ่าน" name="input_pass">
+                            <input type="password" class="form-control" id="login_pass" placeholder="กรอกรหัสผ่าน" name="input_pass" maxlength="20">
                             <span hidden id="password_hide" style="color:darkred; font-weight:400;">&#10006;รหัสผ่านอย่างน้อย 8 ตัว</span>
                             <span id="check_password" hidden>0</span>
                         </div>
@@ -259,7 +274,6 @@ include 'connect.php';
                     </div>
                 </form>
             </div>
-            <!-- <div class="d-none d-sm-flex col" style="display:flex; align-items:center; justify-content:center; width: 10px; border-style:dotted;"><img src="img/split.jpg" alt=""></div> -->
             <div class="col-sm-6" id="login_box" style="padding-right:4rem; padding-left: 4rem;">
                 <form method="POST" action="" style=" width:100%;">
                     <div class="col-12" style="text-align:center; width:100%; margin: 0px auto 2rem;">
@@ -268,13 +282,13 @@ include 'connect.php';
                     <div class="col-12">
                         <div style="margin-bottom: 15px; margin-top: 0px; ">
                             <label for="login_pass" class="form-label">อีเมล</label>
-                            <input type="text" class="form-control" id="login_pass" name="login_user" placeholder="กรอกอีเมลหรือชื่อผู้ใช้">
+                            <input type="text" class="form-control" id="login_pass" name="login_user" placeholder="กรอกอีเมลหรือชื่อผู้ใช้" maxlength="30">
                         </div>
                     </div>
                     <div class="col-12">
                         <div style="margin-bottom: 15px; margin-top: 0px; ">
                             <label for="login_pass" class="form-label">รหัสผ่าน</label>
-                            <input type="password" class="form-control" id="login_pass" name="login_pass" placeholder="กรอกรหัสผ่าน">
+                            <input type="password" class="form-control" id="login_pass" name="login_pass" placeholder="กรอกรหัสผ่าน" maxlength="20">
                         </div>
                     </div>
                     <div class="col-12" style="text-align:right; margin-bottom:0.5rem;"><a href="" style="text-decoration:none;" id="reset_link">ลืมรหัสผ่าน?</a></div>

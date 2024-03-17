@@ -153,7 +153,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_level'] !== 2) {
                         <option value="<?php echo $stmt_edit_product['product_type']; ?>"><?php echo $stmt_edit_product['product_type']; ?></option>
                         <option value="โน๊ตบุ๊ค">โน๊ตบุ๊ค</option>
                         <option value="คอมพิวเตอร์ตั้งโต๊ะ">คอมพิวเตอร์ตั้งโต๊ะ</option>
-                        <option value="จอคอมพิวเตอร์">จอคอมพิวเตอร์</option>
+                        <option value="จอมอนิเตอร์">จอมอนิเตอร์</option>
                     </select>
                 </div>
                 <div class="col-lg-5 col-sm-5" id="box9" style="margin-right:0%; padding-right:0% ">

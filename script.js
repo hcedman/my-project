@@ -90,9 +90,24 @@ function regisCheck(fnam) {
     });
 }
 
-
-
-
+function sendMail() {
+    var params = {
+      name: document.getElementById("name").value,
+      message: document.getElementById("message").value,
+    };
+    const serviceID = "service_netl7ug";
+    const templateID = "template_iwsc402";
+      emailjs.send(serviceID, templateID, params)
+      .then(res=>{
+          document.getElementById("name").value = "";
+          document.getElementById("message").value = "";
+          console.log(res);
+          alertInto("success", "ดำเนินการส่ง E-mail เรียบร้อย", "about.php")
+      })
+      .catch(err=>console.log(err));
+  }
+  
+  
 
 
 
